@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-brand-light text-brand-dark antialiased;
+  }
+
+  /* Focus states — never remove, always visible (ui-ux-pro-max) */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand-primary;
+  }
+
+  /* Respect reduced motion preference (ui-ux-pro-max) */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .section-padding {
+    @apply px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24;
+  }
+
+  .container-narrow {
+    @apply max-w-7xl mx-auto;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-brand-primary to-brand-accent bg-clip-text text-transparent;
+  }
+
+  .glass-card {
+    @apply bg-white/80 backdrop-blur-sm border border-brand-secondary/20 rounded-2xl shadow-sm;
+  }
+
+  /* Skeleton loading shimmer */
+  .skeleton {
+    @apply bg-gradient-to-r from-brand-light via-brand-secondary/20 to-brand-light bg-[length:200%_100%] animate-shimmer rounded;
+  }
+}
+
+@layer utilities {
+  .hover-lift {
+    @apply transition-transform duration-300 ease-out hover:-translate-y-1;
+  }
+
+  .hover-glow {
+    @apply transition-shadow duration-300 ease-out hover:shadow-lg hover:shadow-brand-secondary/20;
+  }
+}

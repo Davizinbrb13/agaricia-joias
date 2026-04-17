@@ -15,9 +15,22 @@ export function cloudinaryUrl(
   publicId: string,
   t: Transformation = {}
 ): string {
+  if (!publicId) return "";
+
+  let cleanId = publicId.trim();
+
+  // Se o n8n mandou com typo (ex: "ttps://" sem o H na thumbnail)
+  if (cleanId.startsWith('ttps://')) {
+    cleanId = 'h' + cleanId;
+  }
+
   // Se o n8n ou banco já enviaram o link completo, apenas retorna ele
-  if (publicId.startsWith('http://') || publicId.startsWith('https://')) {
-    return publicId;
+  if (cleanId.startsWith('http://') || cleanId.startsWith('https://')) {
+    return cleanId;
+  }
+  
+  if (cleanId.includes('res.cloudinary.com')) {
+    return `https://${cleanId.replace(/^(?:h?ttps?:\/\/)?/, '')}`;
   }
 
   const parts: string[] = [];

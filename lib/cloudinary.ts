@@ -15,6 +15,11 @@ export function cloudinaryUrl(
   publicId: string,
   t: Transformation = {}
 ): string {
+  // Se o n8n ou banco já enviaram o link completo, apenas retorna ele
+  if (publicId.startsWith('http://') || publicId.startsWith('https://')) {
+    return publicId;
+  }
+
   const parts: string[] = [];
   if (t.width) parts.push(`w_${t.width}`);
   if (t.height) parts.push(`h_${t.height}`);

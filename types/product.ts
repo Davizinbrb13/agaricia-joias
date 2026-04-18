@@ -19,11 +19,12 @@ export interface Product {
 
 /** Categorias de produtos disponíveis */
 export const CATEGORIES = [
-  { value: "aneis", label: "Anéis" },
-  { value: "colares", label: "Colares" },
-  { value: "brincos", label: "Brincos" },
-  { value: "pulseiras", label: "Pulseiras" },
-  { value: "conjuntos", label: "Conjuntos" },
+  { value: "anel", label: "Anel" },
+  { value: "colar", label: "Colar" },
+  { value: "brinco", label: "Brinco" },
+  { value: "pingente", label: "Pingente" },
+  { value: "pulseira", label: "Pulseira" },
+  { value: "tornozeleira", label: "Tornozeleira" },
 ] as const;
 
 export type CategoryValue = (typeof CATEGORIES)[number]["value"];

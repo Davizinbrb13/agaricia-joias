@@ -1,0 +1,257 @@
+/* ============ CATALOG ============ */
+.cat-header {
+  padding: 180px 0 60px;
+  text-align: center;
+}
+.cat-header h1 {
+  font-size: clamp(64px, 10vw, 140px);
+  font-weight: 400;
+  margin: 16px 0 20px;
+  letter-spacing: -0.02em;
+}
+.cat-header p {
+  max-width: 540px;
+  margin: 0 auto;
+  color: var(--ink-soft);
+  opacity: 0.75;
+  font-size: 16px;
+}
+
+.cat-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(15,36,68,0.1);
+  margin-bottom: 60px;
+}
+.cat-filters {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+.cat-filter {
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  background: transparent;
+  color: var(--ink-soft);
+  opacity: 0.65;
+  transition: all 0.3s;
+  text-transform: lowercase;
+  font-family: var(--sans);
+}
+.cat-filter:hover { opacity: 1; }
+.cat-filter.on {
+  background: var(--ink);
+  color: var(--foam);
+  opacity: 1;
+}
+.cat-count {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 18px;
+  color: var(--ocean);
+}
+.cat-count span { font-size: 32px; margin-right: 6px; color: var(--ink); }
+
+/* grid layouts */
+.cat-grid {
+  display: grid;
+  gap: 30px;
+}
+.cat-grid-editorial {
+  grid-template-columns: repeat(3, 1fr);
+}
+.cat-grid-carrossel {
+  grid-template-columns: repeat(3, 1fr);
+}
+.cat-grid-asymmetric {
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-flow: dense;
+}
+.cat-grid-asymmetric .card:nth-child(3n+1) { grid-column: span 4; }
+.cat-grid-asymmetric .card:nth-child(3n+2) { grid-column: span 5; }
+.cat-grid-asymmetric .card:nth-child(3n+3) { grid-column: span 3; }
+.cat-grid-asymmetric .card:nth-child(7n+1) { grid-column: span 5; }
+.cat-grid-asymmetric .card:nth-child(7n+4) { grid-column: span 7; }
+
+/* card */
+.card {
+  position: relative;
+  border-radius: var(--r-lg);
+  overflow: visible;
+  cursor: pointer;
+  opacity: 0;
+  animation: cardIn 0.9s var(--ease-out) forwards;
+  transform-style: preserve-3d;
+}
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.card-scene {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  overflow: hidden;
+  transition: transform 0.15s var(--ease-out), box-shadow 0.4s var(--ease-out);
+  transform-style: preserve-3d;
+  box-shadow: 0 10px 30px -15px rgba(15,36,68,0.15);
+  background: linear-gradient(135deg, var(--sand) 0%, var(--paper) 100%);
+}
+.card.hover .card-scene {
+  box-shadow: 0 50px 120px -30px rgba(15,36,68,0.4),
+              0 20px 40px -15px rgba(15,36,68,0.25);
+}
+.card-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(191,212,229,0.6), transparent 50%),
+    radial-gradient(circle at 70% 80%, rgba(244,235,216,0.8), transparent 60%),
+    linear-gradient(135deg, #f4ebd8 0%, #f7f3ea 100%);
+  transition: transform 0.5s;
+}
+.card.hover .card-bg {
+  transform: scale(1.05);
+}
+.card-shine {
+  position: absolute;
+  inset: 0;
+  mix-blend-mode: soft-light;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.card.hover .card-shine { opacity: 1; }
+
+.card-jewel {
+  position: absolute;
+  inset: 12%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateZ(30px);
+  transition: transform 0.5s var(--ease-out), filter 0.4s;
+  filter: drop-shadow(0 10px 16px rgba(15, 36, 68, 0.2));
+}
+.card.hover .card-jewel {
+  transform: translateZ(60px) scale(1.06);
+  filter: drop-shadow(0 24px 36px rgba(15, 36, 68, 0.35));
+}
+.jewel {
+  width: 100%; height: 100%;
+  transition: transform 0.6s var(--ease-out);
+}
+.jewel.spin {
+  animation: jewelSpin 8s linear infinite;
+}
+@keyframes jewelSpin {
+  0%   { transform: rotateY(0deg); }
+  100% { transform: rotateY(360deg); }
+}
+
+.card-shadow {
+  position: absolute;
+  bottom: 8%; left: 20%; right: 20%;
+  height: 18px;
+  background: radial-gradient(ellipse at center, rgba(15,36,68,0.3), transparent 70%);
+  filter: blur(10px);
+  opacity: 0.5;
+  transition: opacity 0.4s, transform 0.4s;
+}
+.card.hover .card-shadow {
+  opacity: 0.8;
+  transform: scale(1.15);
+}
+
+.card-tag {
+  position: absolute;
+  top: 20px; left: 20px;
+  padding: 6px 12px;
+  background: var(--ink);
+  color: var(--foam);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  z-index: 3;
+  transform: translateZ(50px);
+}
+
+.card-meta {
+  position: absolute;
+  bottom: 20px; left: 24px; right: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  z-index: 3;
+  transform: translateZ(40px);
+}
+.card-cat {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ocean);
+  margin-bottom: 4px;
+}
+.card-name {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--ink);
+}
+.card-price {
+  font-family: var(--serif);
+  font-size: 18px;
+  color: var(--ink);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.card-cta {
+  position: absolute;
+  top: 20px; right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: rgba(250,250,247,0.85);
+  backdrop-filter: blur(8px);
+  border-radius: 999px;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink);
+  opacity: 0;
+  transform: translateY(-8px) translateZ(50px);
+  transition: all 0.4s var(--ease-out);
+  z-index: 3;
+}
+.card.hover .card-cta {
+  opacity: 1;
+  transform: translateY(0) translateZ(50px);
+}
+
+.cat-foot {
+  text-align: center;
+  padding: 140px 0 40px;
+}
+.cat-foot h2 {
+  font-size: clamp(36px, 5vw, 56px);
+  margin-bottom: 16px;
+  font-weight: 400;
+}
+.cat-foot p {
+  color: var(--ink-soft);
+  opacity: 0.75;
+  margin-bottom: 32px;
+}
+
+@media (max-width: 900px) {
+  .cat-grid-editorial, .cat-grid-carrossel { grid-template-columns: repeat(2, 1fr); }
+  .cat-grid-asymmetric { grid-template-columns: 1fr 1fr; }
+  .cat-grid-asymmetric .card { grid-column: span 1 !important; }
+  .cat-controls { flex-direction: column; align-items: flex-start; gap: 20px; }
+}

@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:api.anthropic.com)",
+      "Bash(gunzip -c \"C:\\\\Users\\\\davi\\\\.claude\\\\projects\\\\C--Users-davi-Desktop-Projetos-agaricia-vai-agaricia-joias\\\\087cb46f-e0a6-44c3-8b95-79b89831af1e\\\\tool-results\\\\webfetch-1776536497980-0d4niq.bin\")",
+      "Bash(tar -x --wildcards 'agaricia/project/*' -C /tmp/)",
+      "Read(//tmp/agaricia/**)",
+      "Bash(mkdir -p /tmp/design_bundle)",
+      "Bash(gunzip -c \"C:/Users/davi/.claude/projects/C--Users-davi-Desktop-Projetos-agaricia-vai-agaricia-joias/087cb46f-e0a6-44c3-8b95-79b89831af1e/tool-results/webfetch-1776536497980-0d4niq.bin\")",
+      "Bash(tar -xf - -C /tmp/design_bundle)",
+      "Read(//tmp/design_bundle/**)",
+      "Bash(grep -E \"public|agaricia$\")",
+      "Bash(npx tsc *)",
+      "Bash(npm run *)",
+      "Bash(npx next *)",
+      "Read(//c/Users/davi/.claude/projects/C--Users-davi-Desktop-Projetos-agaricia-vai-agaricia-joias/**)",
+      "Read(//c/Users/davi/.claude/projects/C--Users-davi-Desktop-Projetos-agaricia-vai-agaricia-joias/memory/**)"
+    ]
+  }
+}

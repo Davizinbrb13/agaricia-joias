@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agaricia Joias — Prata 925 · Região dos Lagos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=2">
+<link rel="stylesheet" href="shared.css?v=2">
+<link rel="stylesheet" href="home.css?v=2">
+<link rel="stylesheet" href="catalogo.css?v=2">
+<link rel="stylesheet" href="produto-sobre-contato.css?v=2">
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="shared.jsx"></script>
+<script type="text/babel" src="home.jsx"></script>
+<script type="text/babel" src="catalogo.jsx"></script>
+<script type="text/babel" src="produto.jsx"></script>
+<script type="text/babel" src="sobre-contato.jsx"></script>
+
+<script type="text/babel">
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "heroVariant": "photo",
+  "catalogLayout": "editorial"
+}/*EDITMODE-END*/;
+
+function App() {
+  const [page, setPage] = React.useState(() => {
+    try { return localStorage.getItem("ag:page") || "home"; } catch { return "home"; }
+  });
+  const [productId, setProductId] = React.useState(() => {
+    try { return localStorage.getItem("ag:product") || "coral-anel"; } catch { return "coral-anel"; }
+  });
+  const [transition, setTransition] = React.useState("");
+  const [tweaks, setTweaks] = React.useState(TWEAK_DEFAULTS);
+  const [tweaksOpen, setTweaksOpen] = React.useState(false);
+
+  // Persist
+  React.useEffect(() => { try { localStorage.setItem("ag:page", page); } catch {} }, [page]);
+  React.useEffect(() => { try { localStorage.setItem("ag:product", productId); } catch {} }, [productId]);
+
+  // Navigate with fluid transition
+  const go = (p, id) => {
+    if (p === page && !id) return;
+    setTransition("in");
+    setTimeout(() => {
+      setPage(p);
+      if (id) setProductId(id);
+      window.scrollTo(0, 0);
+      setTransition("out");
+      setTimeout(() => setTransition(""), 700);
+    }, 500);
+  };
+
+  const openProduct = (id) => go("produto", id);
+
+  // Determine BG tone by page
+  const tone = page === "home" ? "light" : "light";
+
+  // Edit mode protocol
+  React.useEffect(() => {
+    const onMsg = (e) => {
+      if (!e.data || !e.data.type) return;
+      if (e.data.type === "__activate_edit_mode") setTweaksOpen(true);
+      if (e.data.type === "__deactivate_edit_mode") setTweaksOpen(false);
+    };
+    window.addEventListener("message", onMsg);
+    try { window.parent.postMessage({ type: "__edit_mode_available" }, "*"); } catch {}
+    return () => window.removeEventListener("message", onMsg);
+  }, []);
+
+  const updateTweak = (k, v) => {
+    setTweaks(t => ({ ...t, [k]: v }));
+    try { window.parent.postMessage({ type: "__edit_mode_set_keys", edits: { [k]: v } }, "*"); } catch {}
+  };
+
+  return (
+    <div className="shell">
+      <OceanBackground tone={tone} />
+      <Nav page={page} go={go} />
+
+      {page === "home" && <HomePage go={go} heroVariant={tweaks.heroVariant} />}
+      {page === "catalogo" && <CatalogoPage go={go} catalogLayout={tweaks.catalogLayout} openProduct={openProduct} />}
+      {page === "produto" && <ProdutoPage productId={productId} go={go} />}
+      {page === "sobre" && <SobrePage go={go} />}
+      {page === "contato" && <ContatoPage go={go} />}
+
+      <Footer go={go} />
+
+      <div className={`page-transition ${transition}`} />
+
+      {tweaksOpen && (
+        <div className="tweaks open" data-screen-label="Tweaks">
+          <div className="tweaks-group">
+            <h4>Hero (home)</h4>
+            <div className="tweaks-options">
+              {["photo", "svg", "video"].map(v => (
+                <button key={v}
+                  className={`tweaks-opt ${tweaks.heroVariant === v ? "on" : ""}`}
+                  onClick={() => updateTweak("heroVariant", v)}>
+                  {v === "photo" ? "Foto" : v === "svg" ? "SVG" : "Vídeo-água"}
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className="tweaks-group">
+            <h4>Catálogo — layout</h4>
+            <div className="tweaks-options">
+              {["editorial", "asymmetric", "carrossel"].map(v => (
+                <button key={v}
+                  className={`tweaks-opt ${tweaks.catalogLayout === v ? "on" : ""}`}
+                  onClick={() => updateTweak("catalogLayout", v)}>
+                  {v === "editorial" ? "Grid editorial" : v === "asymmetric" ? "Assimétrico" : "Carrossel"}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>

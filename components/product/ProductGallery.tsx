@@ -17,8 +17,12 @@ export default function ProductGallery({
 
   if (images.length === 0) {
     return (
-      <div className="aspect-square bg-brand-secondary/10 rounded-2xl flex items-center justify-center">
-        <p className="text-brand-muted">Sem imagem disponível</p>
+      <div className="produto-stage">
+        <div className="produto-stage-img">
+          <p style={{ color: "var(--silver-deep)", fontFamily: "var(--serif)", fontStyle: "italic" }}>
+            Sem imagem disponível
+          </p>
+        </div>
       </div>
     );
   }
@@ -26,22 +30,33 @@ export default function ProductGallery({
   const mainImage = productHero(images[selectedIndex]);
 
   return (
-    <div className="space-y-4">
-      {/* Main image */}
-      <div className="relative aspect-square overflow-hidden rounded-2xl bg-white shadow-sm">
-        <Image
-          src={mainImage}
-          alt={`${productName} — imagem ${selectedIndex + 1}`}
-          fill
-          sizes="(max-width: 768px) 100vw, 50vw"
-          className="object-contain"
-          priority={selectedIndex === 0}
-        />
+    <div className="produto-viewer">
+      <div className="produto-stage">
+        <svg className="produto-halo" viewBox="0 0 400 400" aria-hidden="true">
+          <defs>
+            <radialGradient id="prodHalo" cx="50%" cy="50%" r="50%">
+              <stop offset="60%" stopColor="transparent" />
+              <stop offset="85%" stopColor="rgba(191,212,229,0.35)" />
+              <stop offset="100%" stopColor="transparent" />
+            </radialGradient>
+          </defs>
+          <circle cx="200" cy="200" r="180" fill="url(#prodHalo)" />
+        </svg>
+        <div className="produto-stage-img">
+          <Image
+            src={mainImage}
+            alt={`${productName} imagem ${selectedIndex + 1}`}
+            width={800}
+            height={800}
+            sizes="(max-width: 768px) 100vw, 50vw"
+            priority={selectedIndex === 0}
+            style={{ objectFit: "contain" }}
+          />
+        </div>
       </div>
 
-      {/* Thumbnails */}
       {images.length > 1 && (
-        <div className="flex gap-3 overflow-x-auto pb-2">
+        <div className="produto-thumbs">
           {images.map((img, index) => {
             const thumbUrl = productGallery(img);
             return (
@@ -49,19 +64,15 @@ export default function ProductGallery({
                 key={img}
                 type="button"
                 onClick={() => setSelectedIndex(index)}
-                className={`relative w-20 h-20 flex-shrink-0 rounded-xl overflow-hidden border-2 transition-all duration-200 ${
-                  index === selectedIndex
-                    ? "border-brand-primary shadow-md"
-                    : "border-transparent opacity-60 hover:opacity-100"
-                }`}
+                className={`prod-thumb ${index === selectedIndex ? "on" : ""}`}
                 aria-label={`Ver imagem ${index + 1} de ${productName}`}
               >
                 <Image
                   src={thumbUrl}
-                  alt={`${productName} — miniatura ${index + 1}`}
-                  fill
-                  sizes="80px"
-                  className="object-cover"
+                  alt={`${productName} miniatura ${index + 1}`}
+                  width={72}
+                  height={72}
+                  sizes="72px"
                 />
               </button>
             );

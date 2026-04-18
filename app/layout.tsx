@@ -1,8 +1,8 @@
 import type { Metadata, Viewport } from "next";
-import { inter, playfair } from "@/lib/fonts";
+import { inter, cormorant } from "@/lib/fonts";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import WhatsAppButton from "@/components/layout/WhatsAppButton";
+import OceanBackground from "@/components/layout/OceanBackground";
 import Analytics from "@/components/Analytics";
 import "./globals.css";
 
@@ -12,7 +12,7 @@ const state = process.env.NEXT_PUBLIC_STORE_STATE ?? "RJ";
 
 export const metadata: Metadata = {
   title: {
-    default: `${storeName} — Joias de Prata 925 | ${city}, ${state}`,
+    default: `${storeName} | Joias de Prata 925 | ${city}, ${state}`,
     template: `%s | ${storeName}`,
   },
   description: `Joias de prata 925 com atendimento VIP em domicílio em ${city} e Região dos Lagos, ${state}. Conheça nosso catálogo e agende uma visita.`,
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "pt_BR",
     siteName: storeName,
-    title: `${storeName} — Joias de Prata 925`,
+    title: `${storeName} | Joias de Prata 925`,
     description: `Joias de prata 925 com atendimento VIP em domicílio em ${city} e Região dos Lagos, ${state}.`,
   },
   robots: {
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#FAF7F2",
+  themeColor: "#0f2444",
 };
 
 export default function RootLayout({
@@ -53,12 +53,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" className={`${inter.variable} ${playfair.variable}`}>
-      <body className="font-sans min-h-screen flex flex-col">
+    <html lang="pt-BR" className={`${inter.variable} ${cormorant.variable}`}>
+      <body style={{ minHeight: "100vh" }}>
+        <OceanBackground />
         <Header />
-        <main className="flex-1">{children}</main>
+        <main>{children}</main>
         <Footer />
-        <WhatsAppButton />
         <Analytics />
       </body>
     </html>

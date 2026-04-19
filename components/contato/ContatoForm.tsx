@@ -55,7 +55,7 @@ export default function ContatoForm() {
         <label htmlFor="ct-nome">
           <span>
             Seu nome{" "}
-            <span aria-hidden="true" style={{ color: "var(--ocean)" }}>*</span>
+            <span aria-hidden="true" style={{ color: "var(--tide)" }}>*</span>
           </span>
           <input
             id="ct-nome"
@@ -70,7 +70,7 @@ export default function ContatoForm() {
             aria-invalid={!!errors.nome}
             aria-describedby={errors.nome ? "ct-nome-error" : undefined}
             style={{
-              borderColor: errors.nome ? "var(--ocean)" : undefined,
+              borderColor: errors.nome ? "var(--tide)" : undefined,
             }}
           />
           {errors.nome && (
@@ -81,7 +81,7 @@ export default function ContatoForm() {
                 display: "block",
                 marginTop: 6,
                 fontSize: 13,
-                color: "var(--ocean)",
+                color: "var(--tide)",
                 fontFamily: "var(--sans)",
               }}
             >

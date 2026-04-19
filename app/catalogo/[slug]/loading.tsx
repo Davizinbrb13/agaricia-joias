@@ -65,7 +65,7 @@ export default function ProductLoading() {
                 width: 120,
                 height: 32,
                 borderRadius: 8,
-                background: 'var(--ocean)',
+                background: 'var(--tide)',
                 opacity: 0.2,
                 marginTop: 8,
                 animation: 'shimmer-pulse 1.4s ease-in-out infinite',

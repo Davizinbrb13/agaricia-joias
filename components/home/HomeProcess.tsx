@@ -51,7 +51,7 @@ function ProcessArt({ index }: { index: number }) {
         <circle cx="30" cy="100" r="6" fill="var(--ink)" />
         <circle cx="170" cy="100" r="6" fill="var(--ink)" />
         <circle cx="100" cy="64" r="10" fill="none" stroke="var(--ink)" strokeWidth="1.5" />
-        <text x="100" y="140" textAnchor="middle" fontFamily="var(--serif)" fontSize="14" fontStyle="italic" fill="var(--ocean)">
+        <text x="100" y="140" textAnchor="middle" fontFamily="var(--serif)" fontSize="14" fontStyle="italic" fill="var(--tide)">
           até você
         </text>
       </svg>

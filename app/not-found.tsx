@@ -13,18 +13,18 @@ export default function NotFound() {
           className="mx-auto mb-6"
           aria-hidden="true"
         >
-          <circle cx="40" cy="40" r="36" stroke="var(--ocean)" strokeWidth="1.2" opacity="0.35" />
-          <circle cx="40" cy="40" r="24" stroke="var(--ocean)" strokeWidth="0.8" opacity="0.2" />
+          <circle cx="40" cy="40" r="36" stroke="var(--tide)" strokeWidth="1.2" opacity="0.35" />
+          <circle cx="40" cy="40" r="24" stroke="var(--tide)" strokeWidth="0.8" opacity="0.2" />
           {/* Sparkle / star shape */}
           <path
             d="M40 24 L42 36 L54 38 L42 40 L44 52 L40 42 L36 52 L38 40 L26 38 L38 36 Z"
-            stroke="var(--ocean)"
+            stroke="var(--tide)"
             strokeWidth="1.2"
             strokeLinejoin="round"
             fill="none"
             opacity="0.6"
           />
-          <circle cx="40" cy="38" r="3" fill="var(--ocean)" opacity="0.5" />
+          <circle cx="40" cy="38" r="3" fill="var(--tide)" opacity="0.5" />
         </svg>
 
         <h2 className="font-serif text-4xl text-brand-dark mb-4">

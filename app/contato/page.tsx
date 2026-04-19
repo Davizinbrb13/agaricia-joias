@@ -43,11 +43,7 @@ export default function ContatoPage() {
                     href={getWhatsAppUrl()}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn"
-                    style={{
-                      background: "var(--foam)",
-                      color: "var(--ink)",
-                    }}
+                    className="btn btn-on-dark"
                   >
                     Abrir WhatsApp
                   </a>
@@ -80,7 +76,7 @@ export default function ContatoPage() {
                 <h4>Como funciona</h4>
                 <p style={{ fontFamily: "var(--serif)", fontSize: 17, lineHeight: 1.5, color: "var(--ink)" }}>
                   Combinamos um horário, levamos as peças até você e você
-                  experimenta com calma. <em style={{ fontStyle: "italic", color: "var(--ocean)" }}>Simples assim.</em>
+                  experimenta com calma. <em style={{ fontStyle: "italic", color: "var(--tide)" }}>Simples assim.</em>
                 </p>
               </div>
             </aside>

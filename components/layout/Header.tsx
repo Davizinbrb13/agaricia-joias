@@ -193,7 +193,7 @@ export default function Header() {
               fontSize: 12,
               letterSpacing: "0.16em",
               textTransform: "uppercase",
-              color: "var(--ocean)",
+              color: "var(--tide)",
               fontFamily: "var(--sans)",
               background: "none",
               border: "none",

@@ -39,7 +39,7 @@ export default async function CatalogoPage() {
       <section className="cat-foot">
         <div className="ag-container">
           <h2>
-            Não encontrou o que <em style={{ fontStyle: "italic", color: "var(--ocean)" }}>procurava</em>?
+            Não encontrou o que <em style={{ fontStyle: "italic", color: "var(--tide)" }}>procurava</em>?
           </h2>
           <p>
             Nosso mostruário vai além do site. Chame no WhatsApp e levamos as peças até você.

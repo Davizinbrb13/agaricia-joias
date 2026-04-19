@@ -13,12 +13,12 @@ export default function ProductNotFound() {
           className="mx-auto mb-6"
           aria-hidden="true"
         >
-          <circle cx="40" cy="40" r="36" stroke="var(--ocean)" strokeWidth="1.2" opacity="0.3" />
+          <circle cx="40" cy="40" r="36" stroke="var(--tide)" strokeWidth="1.2" opacity="0.3" />
           {/* Ring shape */}
-          <circle cx="40" cy="40" r="20" stroke="var(--ocean)" strokeWidth="3" fill="none" opacity="0.5" />
-          <circle cx="40" cy="40" r="13" stroke="var(--ocean)" strokeWidth="1" fill="none" opacity="0.3" />
+          <circle cx="40" cy="40" r="20" stroke="var(--tide)" strokeWidth="3" fill="none" opacity="0.5" />
+          <circle cx="40" cy="40" r="13" stroke="var(--tide)" strokeWidth="1" fill="none" opacity="0.3" />
           {/* Gem at top */}
-          <path d="M37 22 L40 18 L43 22 L40 26 Z" stroke="var(--ocean)" strokeWidth="1.2" fill="none" opacity="0.6" />
+          <path d="M37 22 L40 18 L43 22 L40 26 Z" stroke="var(--tide)" strokeWidth="1.2" fill="none" opacity="0.6" />
         </svg>
 
         <h2 className="font-serif text-3xl text-brand-dark mb-4">

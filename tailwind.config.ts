@@ -21,6 +21,7 @@ const config: Config = {
           paper: "#f7f3ea",
           silver: "#c8ccd1",
           "silver-deep": "#8a92a0",
+          tide: "#4DBEAD",
           // legacy aliases for existing components
           primary: "#3d6b9c",
           secondary: "#bfd4e5",

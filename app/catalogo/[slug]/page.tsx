@@ -107,7 +107,7 @@ export default async function ProductPage({ params }: Props) {
                 {product.featured && (
                   <>
                     <span>·</span>
-                    <span style={{ color: "var(--ocean)", fontStyle: "italic" }}>Destaque</span>
+                    <span style={{ color: "var(--tide)", fontStyle: "italic" }}>Destaque</span>
                   </>
                 )}
               </div>
@@ -182,7 +182,7 @@ export default async function ProductPage({ params }: Props) {
               </span>
               <h2>
                 Mais peças da categoria{" "}
-                <em style={{ fontStyle: "italic", color: "var(--ocean)" }}>
+                <em style={{ fontStyle: "italic", color: "var(--tide)" }}>
                   {categoryLabel.toLowerCase()}
                 </em>
               </h2>

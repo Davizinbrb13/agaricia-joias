@@ -53,7 +53,7 @@ export default function SobrePage() {
             <div>
               <p className="sobre-lead">
                 A {storeName} nasceu do amor pela beleza e pela{" "}
-                <em style={{ fontStyle: "italic", color: "var(--ocean)" }}>prata</em>.
+                <em style={{ fontStyle: "italic", color: "var(--tide)" }}>prata</em>.
                 Uma joalheria feminina para mulheres que valorizam elegância, qualidade e conforto.
               </p>
             </div>

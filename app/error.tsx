@@ -24,9 +24,9 @@ export default function Error({
           className="mx-auto mb-6"
           aria-hidden="true"
         >
-          <circle cx="32" cy="32" r="28" stroke="var(--ocean)" strokeWidth="1.5" opacity="0.4" />
-          <path d="M32 20v16" stroke="var(--ocean)" strokeWidth="2" strokeLinecap="round" />
-          <circle cx="32" cy="42" r="2" fill="var(--ocean)" />
+          <circle cx="32" cy="32" r="28" stroke="var(--tide)" strokeWidth="1.5" opacity="0.4" />
+          <path d="M32 20v16" stroke="var(--tide)" strokeWidth="2" strokeLinecap="round" />
+          <circle cx="32" cy="42" r="2" fill="var(--tide)" />
         </svg>
         <h2 className="font-serif text-4xl text-brand-dark mb-4">
           Algo deu errado

@@ -540,7 +540,7 @@
 }
 
 /* ============ SIGNATURE ============ */
-.signature { padding: 140px 0; overflow: hidden; }
+.signature { padding: 140px 0; overflow-x: hidden; }
 .signature-inner {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1493,8 +1493,10 @@
   .process-aside { position: static; }
   .process-step { grid-template-columns: 60px 1fr; padding: 28px 24px; }
   .process-step-art { display: none; }
-  .signature-inner { grid-template-columns: 1fr; gap: 60px; }
-  .signature-art { max-width: 380px; }
+  .signature { padding: 80px 0; }
+  .signature-inner { grid-template-columns: 1fr; gap: 40px; }
+  .signature-art { max-width: 280px; margin: 0 auto; }
+  .sig-corner-1 { right: -2%; bottom: -2%; width: 45%; }
   .footer-top { grid-template-columns: 1fr; gap: 40px; }
   .footer-cols { grid-template-columns: 1fr 1fr; }
   .ag-container { padding: 0 20px; }

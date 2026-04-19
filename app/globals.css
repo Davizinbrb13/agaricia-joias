@@ -45,6 +45,7 @@
 @layer base {
   html {
     scroll-behavior: auto;
+    overflow-x: hidden;
   }
 
   *, *::before, *::after {
@@ -447,7 +448,7 @@
 }
 
 /* ============ PROCESS ============ */
-.process { padding: 120px 0; }
+.process { padding: 120px 0; overflow-x: hidden; }
 .process-inner {
   display: grid;
   grid-template-columns: 360px 1fr;
@@ -539,7 +540,7 @@
 }
 
 /* ============ SIGNATURE ============ */
-.signature { padding: 140px 0; }
+.signature { padding: 140px 0; overflow: hidden; }
 .signature-inner {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -599,6 +600,7 @@
 .testimonials {
   padding: 140px 0;
   text-align: center;
+  overflow: hidden;
 }
 .testimonial-wrap {
   position: relative;

@@ -1467,9 +1467,19 @@
     display: flex !important;
     align-items: center;
   }
-  .hero { padding: 120px 0 60px; }
-  .hero-visual { width: 100%; opacity: 0.3; }
-  .hero-pebble-lg { width: 280px; height: 340px; right: 4%; top: 16%; }
+  .hero { padding: 100px 0 80px; }
+  .hero-inner { flex-direction: column; align-items: flex-start; gap: 0; }
+  .hero-copy { max-width: 100%; }
+  .hero-visual {
+    position: absolute;
+    right: -20px;
+    bottom: 0;
+    width: 260px;
+    height: 380px;
+    opacity: 0.18;
+    pointer-events: none;
+  }
+  .hero-pebble-lg { width: 220px; height: 280px; right: 0; top: 0; }
   .hero-pebble-md { display: none; }
   .hero-pebble-sm { display: none; }
   .process-inner { grid-template-columns: 1fr; gap: 40px; }

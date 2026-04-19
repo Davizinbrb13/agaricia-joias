@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import HomeHero from "@/components/home/HomeHero";
 import HomeManifesto from "@/components/home/HomeManifesto";
 import HomeProcess from "@/components/home/HomeProcess";
@@ -40,62 +41,52 @@ export default function HomePage() {
       <section className="signature">
         <div className="signature-inner ag-container">
           <div className="signature-art">
-            <div
-              className="sig-pebble pebble pebble-b"
-              style={{
-                background: "repeating-linear-gradient(135deg, var(--ocean) 0 14px, var(--ink-soft) 14px 28px)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "var(--sand)",
-                fontSize: 10,
-                letterSpacing: "0.18em",
-                textTransform: "uppercase",
-                fontFamily: "var(--sans)",
-              }}
-            >
-              Peça em destaque
+            <div className="sig-pebble pebble pebble-b">
+              <Image
+                src="/Embelezador de Produtos-418749fb-e261-4ee0-8f27-69840365814f.jpg"
+                alt="Pulseira em destaque"
+                fill
+                style={{ objectFit: "cover" }}
+              />
             </div>
-            <div
-              className="sig-corner-1 pebble pebble-c"
-              style={{
-                background: "repeating-linear-gradient(135deg, var(--sand-deep) 0 14px, #dccfb0 14px 28px)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "var(--ink)",
-                fontSize: 10,
-                letterSpacing: "0.18em",
-                textTransform: "uppercase",
-                fontFamily: "var(--sans)",
-              }}
-            >
-              detalhe
+            <div className="sig-corner-1 pebble pebble-c">
+              <Image
+                src="/Embelezador de Produtos-21381872-ba80-4108-a36b-a7f43b7485c7.jpg"
+                alt="Detalhe do anel"
+                fill
+                style={{ objectFit: "cover" }}
+              />
             </div>
           </div>
           <div className="signature-copy">
             <span className="eyebrow">Assinatura Agaricia</span>
             <h2>
-              Cada peça <em>carrega</em>
+              Cada pedra tem uma história.
               <br />
-              um pedaço do mar.
+              Cada visita, uma lembrança.
             </h2>
-            <p>
-              Nossas joias nascem inspiradas na Região dos Lagos: nos corais, nas conchas, no
-              movimento da maré. São feitas em prata 925 com acabamento artesanal, pensadas para
-              acompanhar quem as usa em cada gesto do dia.
-            </p>
+            <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+              <p>
+                A Agaricia nasceu aqui na Região dos Lagos, com o mar do lado e uma paixão por joias que cresceu ao longo de mais de 10 anos.
+              </p>
+              <p>
+                Trabalho com prata 925 legítima, folheado a ouro 18k e peças com pedras semipreciosas importadas e escolhidas com cuidado: ametista, larimar, pedra da lua, abalone, turmalina, opala e muito mais.
+              </p>
+              <p>
+                E depois da compra, continuo por perto. Faço limpeza das peças e tenho contato especializado para qualquer conserto que precisar.
+              </p>
+            </div>
             <div className="sig-specs">
               <div className="sig-spec">
-                <strong>925</strong>
-                <span>prata esterlina</span>
+                <strong>10 anos</strong>
+                <span>de experiência</span>
               </div>
               <div className="sig-spec">
-                <strong>100%</strong>
-                <span>artesanal</span>
+                <strong>Prata 925</strong>
+                <span>legítima</span>
               </div>
               <div className="sig-spec">
-                <strong>RJ</strong>
+                <strong>Araruama, RJ</strong>
                 <span>Região dos Lagos</span>
               </div>
             </div>
@@ -109,11 +100,11 @@ export default function HomePage() {
       <section className="closing">
         <div className="ag-container closing-inner">
           <h2 className="closing-h">
-            Leve a <em>maré</em>
+            Quando você precisar,
             <br />
-            para dentro de casa.
+            <em>eu apareço.</em>
           </h2>
-          <p>Agende uma visita sem compromisso. A prata te espera.</p>
+          <p>Para o presente que não pode errar, para o look do casamento, para o encontro de amigas que virou tarde de joias. Atendo de segunda a sábado em Araruama e na Região dos Lagos.</p>
           <div className="closing-actions">
             <Link href="/contato" className="btn btn-primary">
               Agendar visita <span className="arrow">→</span>

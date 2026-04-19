@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 
 import Image from "next/image";
@@ -8,24 +8,39 @@ import Image from "next/image";
 
 export default function HomeHero() {
   const ref = useRef<HTMLElement>(null);
-  const [mouse, setMouse] = useState({ x: 0, y: 0 });
+  const pebbleLgRef = useRef<HTMLDivElement>(null);
+  const pebbleMdRef = useRef<HTMLDivElement>(null);
+  const pebbleSmRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    let frame = 0;
+    let x = 0;
+    let y = 0;
+
+    const apply = () => {
+      frame = 0;
+      if (pebbleLgRef.current)
+        pebbleLgRef.current.style.transform = `translate3d(${x * 18}px, ${y * 18}px, 0)`;
+      if (pebbleMdRef.current)
+        pebbleMdRef.current.style.transform = `translate3d(${x * 28}px, ${y * 28}px, 0)`;
+      if (pebbleSmRef.current)
+        pebbleSmRef.current.style.transform = `translate3d(${x * 38}px, ${y * 38}px, 0)`;
+    };
+
     const onMove = (e: MouseEvent) => {
       if (!ref.current) return;
       const r = ref.current.getBoundingClientRect();
-      setMouse({
-        x: (e.clientX - r.left) / r.width - 0.5,
-        y: (e.clientY - r.top) / r.height - 0.5,
-      });
+      x = (e.clientX - r.left) / r.width - 0.5;
+      y = (e.clientY - r.top) / r.height - 0.5;
+      if (!frame) frame = requestAnimationFrame(apply);
     };
-    window.addEventListener("mousemove", onMove);
-    return () => window.removeEventListener("mousemove", onMove);
-  }, []);
 
-  const par = (depth: number) => ({
-    transform: `translate3d(${mouse.x * depth}px, ${mouse.y * depth}px, 0)`,
-  });
+    window.addEventListener("mousemove", onMove, { passive: true });
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      if (frame) cancelAnimationFrame(frame);
+    };
+  }, []);
 
   return (
     <section className="hero" ref={ref}>
@@ -33,13 +48,13 @@ export default function HomeHero() {
         {/* Copy */}
         <div className="hero-copy">
           <h1 className="hero-title">
-            <span className="hero-line-1">O brilho da <em>prata</em>,</span>
-            <span className="hero-line-2">trazido até você.</span>
+            <span className="hero-line-1">Joias que chegam</span>
+            <span className="hero-line-2">até você.</span>
           </h1>
           <p className="hero-sub">
-            Joias artesanais em prata 925 com atendimento VIP em domicílio.
+            Prata 925, folheado a ouro e pedras semipreciosas escolhidas com cuidado.
             <br />
-            Experimente com calma. Sem pressa. Sem compromisso.
+            Levo o mostruário até você em Araruama e na Região dos Lagos.
           </p>
           <div className="hero-actions">
             <Link href="/catalogo" className="btn btn-primary">
@@ -53,13 +68,13 @@ export default function HomeHero() {
 
         {/* Photo variant parallax visual */}
         <div className="hero-visual">
-          <div className="hero-pebble-lg pebble pebble-a" style={par(18)}>
+          <div ref={pebbleLgRef} className="hero-pebble-lg pebble pebble-a">
             <Image src="/Captura de tela_12-11-2025_212846_www.instagram.com.jpg" alt="Foto Tornozeleira" fill style={{ objectFit: "cover" }} />
           </div>
-          <div className="hero-pebble-md pebble pebble-b" style={par(28)}>
+          <div ref={pebbleMdRef} className="hero-pebble-md pebble pebble-b">
             <Image src="/Captura de tela_12-11-2025_212727_www.instagram.com.jpg" alt="Foto Anel" fill style={{ objectFit: "cover" }} />
           </div>
-          <div className="hero-pebble-sm pebble pebble-c" style={par(38)}>
+          <div ref={pebbleSmRef} className="hero-pebble-sm pebble pebble-c">
             <Image src="/Captura de tela_12-11-2025_21286_www.instagram.com.jpg" alt="Foto Detalhe" fill style={{ objectFit: "cover" }} />
           </div>
         </div>

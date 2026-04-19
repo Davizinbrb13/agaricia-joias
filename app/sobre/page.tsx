@@ -15,22 +15,22 @@ const PILLARS = [
   {
     n: "01",
     title: "Qualidade",
-    desc: "Todas as peças em prata 925, com garantia de autenticidade e acabamento impecável.",
+    desc: "Prata 925 legítima, folheado a ouro 18k e pedras semipreciosas importadas. Cada peça escolhida a dedo.",
   },
   {
     n: "02",
     title: "Atendimento",
-    desc: "Personalizado, no seu tempo e no seu espaço favorito. Sem pressa, sem compromisso.",
+    desc: "Vou onde você estiver. Sua casa, seu trabalho, a reunião de amigas. Me encaixo na sua rotina, não o contrário.",
   },
   {
     n: "03",
     title: "Confiança",
-    desc: "Transparência nos preços, peças selecionadas com carinho e satisfação garantida.",
+    desc: "Mais de 10 anos no mesmo lugar, com as mesmas clientes que continuam me chamando. Isso diz tudo.",
   },
   {
     n: "04",
     title: "Experiência",
-    desc: "Mais que vender joias, levamos um momento íntimo e especial até você.",
+    desc: "Depois da compra, continuo por perto. Limpeza de peças e contato especializado para qualquer conserto que precisar.",
   },
 ];
 
@@ -39,10 +39,10 @@ export default function SobrePage() {
     <>
       <section className="sobre-hero">
         <div className="ag-container">
-          <span className="eyebrow">Nossa História</span>
+          <span className="eyebrow">A Agaricia</span>
           <h1 className="sobre-h1">
-            joias que<br />
-            <em>te acompanham</em>
+            Mais de 10 anos levando joias<br />
+            até você com carinho.
           </h1>
         </div>
       </section>
@@ -52,30 +52,18 @@ export default function SobrePage() {
           <div className="sobre-intro">
             <div>
               <p className="sobre-lead">
-                A {storeName} nasceu do amor pela beleza e pela{" "}
-                <em style={{ fontStyle: "italic", color: "var(--tide)" }}>prata</em>.
-                Uma joalheria feminina para mulheres que valorizam elegância, qualidade e conforto.
+                A {storeName} nasceu de um momento especial: eu e minha filha, aqui em Araruama, querendo criar algo que nos representasse de verdade. Algo ligado ao mar, às conchas, à Região dos Lagos que tanto amamos.
               </p>
             </div>
             <div className="sobre-intro-col">
               <p>
-                Somos especializadas em peças de <em>prata 925</em>, cuidadosamente
-                selecionadas para acompanhar cada momento, do dia a dia às ocasiões
-                especiais.
+                O nome veio daí. Agaricia é um coral do Atlântico, delicado e cheio de vida, exatamente como as mulheres para quem trabalho.
               </p>
               <p>
-                Atuamos em {city} e em toda a <em>Região dos Lagos, {state}</em>,
-                com um modelo de atendimento que é nosso grande diferencial.
+                Há mais de 10 anos levo joias em prata 925, folheado a ouro e peças com pedras semipreciosas diretamente até as minhas clientes. Na casa delas, no trabalho, no encontro com as amigas, no chá de panela, no aniversário. Cada visita é uma tarde de experimento com calma, sem pressa de vendedora, sem compromisso nenhum.
               </p>
               <p>
-                O <em>atendimento VIP em domicílio</em>: levamos o mostruário completo
-                até você: na sua casa, no trabalho, ou em eventos sociais como chás
-                de panela, aniversários e reuniões de amigas.
-              </p>
-              <p>
-                Você experimenta cada peça com calma, no conforto do seu ambiente. Uma
-                experiência <em>personalizada e intimista</em>, como uma amiga que
-                entende de joias e quer te ajudar a brilhar.
+                E a relação não termina na venda. Faço limpeza das peças e tenho um contato especializado para consertos, solda e cola de pedra. Estou por perto antes, durante e depois.
               </p>
             </div>
           </div>
@@ -101,8 +89,8 @@ export default function SobrePage() {
           <blockquote>
             <div className="sobre-quote-mark">&ldquo;</div>
             <p>
-              Cada peça é escolhida com <em>carinho</em>, porque joia não é só
-              enfeite, é <em>lembrança</em> que fica.
+              Joia boa não é só o que você compra. É também a tarde que você passa
+              experimentando, a amiga que chama pra ver, o presente que acertou em cheio.
             </p>
           </blockquote>
         </div>
@@ -111,7 +99,7 @@ export default function SobrePage() {
       <section style={{ paddingBottom: 120, textAlign: "center" }}>
         <div className="ag-container">
           <p style={{ color: "var(--ink-soft)", marginBottom: 24, fontSize: 17 }}>
-            Ficou interessada? Vamos marcar um atendimento.
+            Quer conhecer o mostruário? Me chame e a gente marca uma tarde.
           </p>
           <a
             href={getWhatsAppUrl()}

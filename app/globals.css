@@ -44,7 +44,7 @@
 
 @layer base {
   html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
   }
 
   *, *::before, *::after {
@@ -117,13 +117,6 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  transform-origin: center;
-  will-change: transform;
-  animation: oceanFloat 28s ease-in-out infinite;
-}
-@keyframes oceanFloat {
-  0%, 100% { filter: saturate(1) brightness(1); }
-  50%       { filter: saturate(1.06) brightness(1.02); }
 }
 .ocean-photo-tint {
   position: absolute; inset: 0;
@@ -1217,10 +1210,16 @@
 .sobre-hero {
   padding: 180px 0 60px;
 }
+.sobre-hero .eyebrow {
+  color: var(--ocean);
+}
+.sobre-hero .eyebrow::before {
+  background: var(--ocean);
+}
 .sobre-h1 {
-  font-size: clamp(64px, 11vw, 180px);
+  font-size: clamp(48px, 7vw, 90px);
   font-weight: 400;
-  line-height: 0.92;
+  line-height: 1.05;
   letter-spacing: -0.02em;
   margin-top: 24px;
 }
@@ -1310,10 +1309,16 @@
 
 /* ============ CONTATO ============ */
 .contato-hero { padding: 180px 0 60px; }
+.contato-hero .eyebrow {
+  color: var(--ocean);
+}
+.contato-hero .eyebrow::before {
+  background: var(--ocean);
+}
 .contato-h1 {
-  font-size: clamp(56px, 9vw, 140px);
+  font-size: clamp(48px, 6.5vw, 84px);
   font-weight: 400;
-  line-height: 0.95;
+  line-height: 1.05;
   margin-top: 20px;
   letter-spacing: -0.02em;
 }

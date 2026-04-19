@@ -6,20 +6,20 @@ const STEPS = [
   {
     n: "01",
     kicker: "Escolha",
-    title: "Navegue pelo catálogo",
-    body: "Explore peças em prata 925 com calma. Separe favoritas para experimentar em casa, sem compromisso.",
+    title: "Explore as peças",
+    body: "Navegue pelo catálogo e separe as peças que chamaram sua atenção. Anéis, colares, brincos, pulseiras em prata 925 e folheado a ouro.",
   },
   {
     n: "02",
     kicker: "Agende",
-    title: "Marcamos a visita",
-    body: "Combinamos dia e horário que caibam na sua rotina. Casa, trabalho, evento, vamos até você.",
+    title: "Me chame no WhatsApp",
+    body: "Combinamos o melhor dia e horário pra você. Sua casa, seu trabalho, o encontro com as amigas, o chá de panela da vizinha. Eu me adapto.",
   },
   {
     n: "03",
     kicker: "Experimente",
-    title: "Viva a prata em casa",
-    body: "Abrimos o mostruário no seu espaço. Teste cada peça, veja na luz natural, sinta o peso. Sem pressa.",
+    title: "Experimente sem pressa",
+    body: "Abro o mostruário no seu espaço. Você prova cada peça na luz natural, sente o peso, combina com o look. Sem pressa de vendedora, sem compromisso nenhum.",
   },
 ];
 
@@ -27,54 +27,52 @@ function ProcessArt({ index }: { index: number }) {
   if (index === 0)
     return (
       <svg viewBox="0 0 200 200" style={{ width: "100%", height: "100%" }}>
-        <circle cx="100" cy="100" r="88" fill="none" stroke="var(--ink)" strokeWidth="0.5" opacity="0.3" />
-        {Array.from({ length: 12 }).map((_, i) => {
-          const a = i * ((Math.PI * 2) / 12);
-          return (
-            <circle
-              key={i}
-              cx={100 + Math.cos(a) * 70}
-              cy={100 + Math.sin(a) * 70}
-              r="3"
-              fill="var(--ink)"
-              opacity={0.3 + (i % 3) * 0.2}
-            />
-          );
-        })}
-        <circle cx="100" cy="100" r="12" fill="var(--ink)" />
+        <circle cx="100" cy="100" r="88" fill="var(--sand-deep)" opacity="0.3" />
+        <g transform="translate(100 100)" stroke="var(--ink)" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
+          {/* Diamond */}
+          <path d="M-20 -30 L20 -30 L40 -10 L-40 -10 Z" />
+          <path d="M-40 -10 L0 45 L40 -10" />
+          <path d="M-20 -30 L0 45 M20 -30 L0 45" opacity="0.4" />
+          <path d="M0 -30 L0 -10" opacity="0.4" />
+          {/* Sparkles */}
+          <path d="M -40 -40 L -45 -55 M -35 -45 L -20 -50" strokeWidth="1.5" opacity="0.5" />
+          <path d="M 35 -20 L 40 -30 M 30 -25 L 45 -25" strokeWidth="1.5" opacity="0.5" />
+        </g>
       </svg>
     );
   if (index === 1)
     return (
       <svg viewBox="0 0 200 200" style={{ width: "100%", height: "100%" }}>
-        <path d="M 30 100 Q 100 40, 170 100" stroke="var(--ink)" strokeWidth="1" fill="none" opacity="0.3" strokeDasharray="3 4" />
-        <circle cx="30" cy="100" r="6" fill="var(--ink)" />
-        <circle cx="170" cy="100" r="6" fill="var(--ink)" />
-        <circle cx="100" cy="64" r="10" fill="none" stroke="var(--ink)" strokeWidth="1.5" />
-        <text x="100" y="140" textAnchor="middle" fontFamily="var(--serif)" fontSize="14" fontStyle="italic" fill="var(--tide)">
-          até você
-        </text>
+        <circle cx="100" cy="100" r="88" fill="var(--sand-deep)" opacity="0.3" />
+        <g transform="translate(100 100)" stroke="var(--ink)" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
+          {/* Chat Bubble */}
+          <rect x="-35" y="-25" width="70" height="50" rx="15" />
+          <path d="M -15 25 L -25 40 L -5 25" fill="var(--ink)" opacity="0.2" />
+          {/* Dots */}
+          <circle cx="-15" cy="0" r="2" fill="var(--ink)" stroke="none" />
+          <circle cx="0" cy="0" r="2" fill="var(--ink)" stroke="none" />
+          <circle cx="15" cy="0" r="2" fill="var(--ink)" stroke="none" />
+        </g>
       </svg>
     );
   return (
     <svg viewBox="0 0 200 200" style={{ width: "100%", height: "100%" }}>
-      <g transform="translate(100 100)">
-        {[0, 1, 2, 3, 4].map((i) => (
-          <rect
-            key={i}
-            x={-30 + i * 4}
-            y={-60 + i * 6}
-            width="60"
-            height="8"
-            rx="4"
-            fill="none"
-            stroke="var(--ink)"
-            strokeWidth="0.8"
-            opacity={0.3 + i * 0.15}
-            transform={`rotate(${i * 3})`}
-          />
-        ))}
-        <circle cx="0" cy="20" r="18" fill="var(--sand-deep)" opacity="0.5" />
+      <circle cx="100" cy="100" r="88" fill="var(--sand-deep)" opacity="0.3" />
+      <g transform="translate(100 100)" stroke="var(--ink)" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
+        {/* Hand Mirror rotated slightly */}
+        <g transform="rotate(15)">
+          {/* Handle */}
+          <rect x="-6" y="30" width="12" height="35" rx="3" />
+          {/* Mirror Frame */}
+          <ellipse cx="0" cy="-10" rx="25" ry="35" />
+          <ellipse cx="0" cy="-10" rx="20" ry="30" opacity="0.4" />
+          {/* Reflection lines */}
+          <line x1="-8" y1="-25" x2="8" y2="-5" opacity="0.3" />
+          <line x1="-3" y1="-30" x2="13" y2="-10" opacity="0.3" />
+        </g>
+        {/* Sparkles */}
+        <path d="M -30 -20 L -35 -30 M -25 -25 L -40 -25" strokeWidth="1.5" opacity="0.5" />
+        <path d="M 30 10 L 35 20 M 25 15 L 40 15" strokeWidth="1.5" opacity="0.5" />
       </g>
     </svg>
   );
@@ -112,12 +110,12 @@ export default function HomeProcess() {
         <aside className="process-aside">
           <span className="eyebrow">Como funciona</span>
           <h2 className="process-h">
-            Um atendimento
+            Do catálogo
             <br />
-            <em>feito à mão.</em>
+            <em>à sua sala.</em>
           </h2>
           <p className="process-desc">
-            Três passos simples para levar a prata até você, exatamente onde estiver.
+            Simples assim: você escolhe, a gente aparece, você experimenta com calma.
           </p>
           <div className="process-indicator">
             {STEPS.map((_, i) => (

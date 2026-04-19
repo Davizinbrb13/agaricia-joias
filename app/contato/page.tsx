@@ -16,13 +16,13 @@ export default function ContatoPage() {
     <>
       <section className="contato-hero">
         <div className="ag-container">
-          <span className="eyebrow">Fale com a gente</span>
+          <span className="eyebrow">Agendar visita</span>
           <h1 className="contato-h1">
-            vamos <em>conversar</em>
+            Me conta quando e onde você<br />
+            quer me receber.
           </h1>
           <p style={{ maxWidth: 560, marginTop: 24, color: "var(--ink-soft)", fontSize: 17, lineHeight: 1.6 }}>
-            Conta pra gente quando e onde te encontrar, levamos o mostruário
-            até você, sem pressa e sem compromisso.
+            Preencha abaixo e eu mando as opções de horário por WhatsApp. Ou, se preferir, me chama direto.
           </p>
         </div>
       </section>
@@ -59,7 +59,7 @@ export default function ContatoPage() {
                   </li>
                   <li>
                     <span>Região atendida</span>
-                    <strong>Araruama, Saquarema, São Pedro da Aldeia, Cabo Frio e região</strong>
+                    <strong>Araruama e Região dos Lagos, RJ</strong>
                   </li>
                   <li>
                     <span>Horário</span>
@@ -75,8 +75,7 @@ export default function ContatoPage() {
               <div className="contato-card">
                 <h4>Como funciona</h4>
                 <p style={{ fontFamily: "var(--serif)", fontSize: 17, lineHeight: 1.5, color: "var(--ink)" }}>
-                  Combinamos um horário, levamos as peças até você e você
-                  experimenta com calma. <em style={{ fontStyle: "italic", color: "var(--tide)" }}>Simples assim.</em>
+                  Você me conta onde está e quando fica bom. Eu apareço com o mostruário completo e a gente vai com calma, sem pressa. Pode chamar as amigas.
                 </p>
               </div>
             </aside>

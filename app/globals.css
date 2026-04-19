@@ -1474,7 +1474,12 @@
     display: flex !important;
     align-items: center;
   }
-  .hero { padding: 100px 0 80px; }
+  .hero { padding: 120px 0 40px; min-height: auto; }
+  .manifesto { padding: 80px 0; min-height: auto; }
+  .process { padding: 80px 0; }
+  .testimonials { padding: 80px 0; }
+  .closing { padding: 80px 0 60px; }
+  .ag-footer { margin-top: 80px; padding: 60px 0 20px; }
   .hero-inner { flex-direction: column; align-items: flex-start; gap: 0; }
   .hero-copy { max-width: 100%; }
   .hero-visual {

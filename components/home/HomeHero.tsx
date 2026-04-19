@@ -3,28 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
-function PhotoPlaceholder({
-  label,
-  tone = "sand",
-}: {
-  label: string;
-  tone?: "sand" | "mist" | "deep";
-}) {
-  const bg = {
-    sand: "repeating-linear-gradient(135deg, #e8dcc0 0 14px, #dccfb0 14px 28px)",
-    mist: "repeating-linear-gradient(135deg, #bfd4e5 0 14px, #a8c4db 14px 28px)",
-    deep: "repeating-linear-gradient(135deg, #3d6b9c 0 14px, #2f5882 14px 28px)",
-  }[tone];
-  const fg = tone === "deep" ? "#f4ebd8" : "#0f2444";
-  return (
-    <div
-      className="photo-ph"
-      style={{ background: bg, color: fg, fontFamily: "var(--sans)" }}
-    >
-      <span>{label}</span>
-    </div>
-  );
-}
+import Image from "next/image";
+
 
 export default function HomeHero() {
   const ref = useRef<HTMLElement>(null);
@@ -74,13 +54,13 @@ export default function HomeHero() {
         {/* Photo variant parallax visual */}
         <div className="hero-visual">
           <div className="hero-pebble-lg pebble pebble-a" style={par(18)}>
-            <PhotoPlaceholder label="Foto · tornozeleira" tone="deep" />
+            <Image src="/Captura de tela_12-11-2025_212846_www.instagram.com.jpg" alt="Foto Tornozeleira" fill style={{ objectFit: "cover" }} />
           </div>
           <div className="hero-pebble-md pebble pebble-b" style={par(28)}>
-            <PhotoPlaceholder label="Foto · anel" tone="sand" />
+            <Image src="/Captura de tela_12-11-2025_212727_www.instagram.com.jpg" alt="Foto Anel" fill style={{ objectFit: "cover" }} />
           </div>
           <div className="hero-pebble-sm pebble pebble-c" style={par(38)}>
-            <PhotoPlaceholder label="detalhe" tone="mist" />
+            <Image src="/Captura de tela_12-11-2025_21286_www.instagram.com.jpg" alt="Foto Detalhe" fill style={{ objectFit: "cover" }} />
           </div>
         </div>
       </div>

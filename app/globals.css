@@ -1502,6 +1502,8 @@
   .signature-inner { grid-template-columns: 1fr; gap: 40px; }
   .signature-art { width: 100%; max-width: 280px; margin: 0 auto; }
   .sig-corner-1 { right: -2%; bottom: -2%; width: 45%; }
+  .sig-specs { flex-wrap: wrap; gap: 24px; justify-content: space-between; }
+  .sig-spec strong { font-size: 28px; }
   .footer-top { grid-template-columns: 1fr; gap: 40px; }
   .footer-cols { grid-template-columns: 1fr 1fr; }
   .ag-container { padding: 0 20px; }

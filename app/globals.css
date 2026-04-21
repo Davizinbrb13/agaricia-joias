@@ -161,6 +161,7 @@
   font-size: 22px;
   letter-spacing: 0.08em;
   font-weight: 500;
+  transform: translateY(-3px);
 }
 .nav-links {
   display: flex;
@@ -1066,14 +1067,10 @@
 .produto-stage {
   position: relative;
   aspect-ratio: 1/1;
-  background: radial-gradient(circle at 50% 50%, var(--paper), var(--sand) 70%);
-  border-radius: var(--r-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-soft);
 }
 .produto-stage-img {
   position: absolute;
-  inset: 12%;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1082,7 +1079,8 @@
 .produto-stage-img img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
+  border-radius: 50%;
 }
 .produto-halo {
   position: absolute;
@@ -1131,14 +1129,15 @@
   font-size: 12px;
   letter-spacing: 0.1em;
   color: var(--tide);
-  margin-bottom: 28px;
-  display: inline-block;
+  margin-bottom: 8px;
+  display: block;
+  width: fit-content;
   transition: color 0.2s;
 }
 .produto-back:hover { color: var(--ink); }
 .produto-name {
   font-size: clamp(40px, 5.5vw, 72px);
-  margin: 10px 0 14px;
+  margin: 10px 0 40px;
   font-weight: 400;
   line-height: 1;
 }
@@ -1173,12 +1172,12 @@
 .produto-actions {
   display: flex;
   gap: 12px;
-  margin-bottom: 40px;
+  margin-bottom: 60px;
   flex-wrap: wrap;
 }
 .produto-specs {
   list-style: none;
-  padding: 24px 0 0;
+  padding: 40px 0 0;
   margin: 0;
   border-top: 1px solid rgba(15, 36, 68, 0.1);
   display: grid;

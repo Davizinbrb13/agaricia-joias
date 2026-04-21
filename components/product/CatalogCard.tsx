@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRef, useState } from "react";
 import { productThumbnail } from "@/lib/cloudinary";
-import { formatPrice } from "@/lib/utils";
+
 import type { Product } from "@/types/product";
 import { CATEGORIES } from "@/types/product";
 
@@ -98,11 +98,7 @@ export default function CatalogCard({ product, index = 0 }: CatalogCardProps) {
             <div className="cat-card-cat">{categoryLabel}</div>
             <div className="cat-card-name">{product.name}</div>
           </div>
-          <div className="cat-card-price">
-            {product.price !== null && product.price !== undefined
-              ? formatPrice(product.price)
-              : <em style={{ fontStyle: "italic", fontSize: 14 }}>sob consulta</em>}
-          </div>
+
         </div>
       </div>
     </Link>

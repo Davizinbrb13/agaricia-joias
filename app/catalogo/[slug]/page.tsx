@@ -4,11 +4,10 @@ import Link from "next/link";
 import ProductGallery from "@/components/product/ProductGallery";
 import CatalogCard from "@/components/product/CatalogCard";
 import JsonLd from "@/components/seo/JsonLd";
-import WhatsAppButton from "@/components/layout/WhatsAppButton";
 import { getProductBySlug, getRelatedProducts, getAllSlugs } from "@/lib/queries";
 import { getProductWhatsAppUrl } from "@/lib/whatsapp";
 import { ogImage } from "@/lib/cloudinary";
-import { formatPrice } from "@/lib/utils";
+
 import { CATEGORIES } from "@/types/product";
 
 export const revalidate = 60;
@@ -90,7 +89,6 @@ export default async function ProductPage({ params }: Props) {
   return (
     <>
       <JsonLd data={productSchema} />
-      <WhatsAppButton productName={product.name} />
 
       <section>
         <div className="ag-container">
@@ -102,25 +100,11 @@ export default async function ProductPage({ params }: Props) {
                 ← voltar ao catálogo
               </Link>
 
-              <div className="eyebrow" style={{ marginTop: 8 }}>
-                {categoryLabel}
-                {product.featured && (
-                  <>
-                    <span>·</span>
-                    <span style={{ color: "var(--tide)", fontStyle: "italic" }}>Destaque</span>
-                  </>
-                )}
-              </div>
+
 
               <h1 className="produto-name">{product.name}</h1>
 
-              <div className="produto-price">
-                {product.price !== null && product.price !== undefined ? (
-                  formatPrice(product.price)
-                ) : (
-                  <em style={{ fontStyle: "italic" }}>Sob consulta</em>
-                )}
-              </div>
+
 
               {product.description && (
                 <p className="produto-desc">{product.description}</p>
@@ -163,10 +147,7 @@ export default async function ProductPage({ params }: Props) {
                   <strong>Atendimento</strong>
                   <span>VIP em domicílio</span>
                 </li>
-                <li>
-                  <strong>Garantia</strong>
-                  <span>Autenticidade 925</span>
-                </li>
+
               </ul>
             </div>
           </div>

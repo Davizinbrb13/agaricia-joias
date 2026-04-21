@@ -1516,7 +1516,7 @@
   .footer-cols { grid-template-columns: 1fr 1fr; }
   .footer-brand { gap: 12px; align-items: center; }
   .footer-brand img { width: 40px !important; height: 40px !important; }
-  .ag-footer .footer-brand-name { font-size: 20px; letter-spacing: 0.06em; }
+  .ag-footer .footer-brand-name { font-size: 22px; letter-spacing: 0.06em; font-weight: 600; color: var(--foam); opacity: 1; }
   .ag-footer .footer-brand-sub { font-size: 10px; letter-spacing: 0.2em; }
   .ag-container { padding: 0 20px; }
 

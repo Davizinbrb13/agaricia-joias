@@ -1514,11 +1514,10 @@
   .sig-spec strong { font-size: 28px; }
   .footer-top { grid-template-columns: 1fr; gap: 40px; }
   .footer-cols { grid-template-columns: 1fr 1fr; }
-  .footer-brand { gap: 10px; align-items: center; }
-  .footer-brand img { width: 36px !important; height: 36px !important; }
-  .footer-brand > div { min-width: 0; flex: 1 1 auto; }
-  .ag-footer .footer-brand-name { font-size: 18px !important; letter-spacing: 0.06em !important; line-height: 1.1 !important; }
-  .ag-footer .footer-brand-sub { font-size: 9px !important; letter-spacing: 0.2em !important; margin-top: 2px !important; }
+  .footer-brand { gap: 12px; align-items: center; }
+  .footer-brand img { width: 40px !important; height: 40px !important; }
+  .ag-footer .footer-brand-name { font-size: 20px; letter-spacing: 0.06em; }
+  .ag-footer .footer-brand-sub { font-size: 10px; letter-spacing: 0.2em; }
   .ag-container { padding: 0 20px; }
 
   /* Catalog */

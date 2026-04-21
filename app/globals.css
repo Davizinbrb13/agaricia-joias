@@ -1514,7 +1514,8 @@
   .sig-spec strong { font-size: 28px; }
   .footer-top { grid-template-columns: 1fr; gap: 40px; }
   .footer-cols { grid-template-columns: 1fr 1fr; }
-  .footer-brand { gap: 12px; align-items: center; }
+  .ag-footer::before { display: none; }
+  .footer-brand { gap: 12px; align-items: center; position: relative; z-index: 1; }
   .footer-brand img { width: 40px !important; height: 40px !important; }
   .ag-footer .footer-brand-name { font-size: 22px; letter-spacing: 0.06em; font-weight: 600; color: var(--foam); opacity: 1; }
   .ag-footer .footer-brand-sub { font-size: 10px; letter-spacing: 0.2em; }

@@ -1505,8 +1505,10 @@
   .sig-spec strong { font-size: 28px; }
   .footer-top { grid-template-columns: 1fr; gap: 40px; }
   .footer-cols { grid-template-columns: 1fr 1fr; }
-  .footer-brand { gap: 12px; flex-wrap: wrap; }
-  .footer-brand-name { font-size: 22px; letter-spacing: 0.08em; }
+  .footer-brand { gap: 12px; }
+  .footer-brand > div { min-width: 0; flex: 1; }
+  .footer-brand-name { font-size: 18px; letter-spacing: 0.06em; white-space: nowrap; overflow: hidden; text-overflow: clip; }
+  .footer-brand-sub { font-size: 9px; letter-spacing: 0.2em; }
   .ag-container { padding: 0 20px; }
 
   /* Catalog */

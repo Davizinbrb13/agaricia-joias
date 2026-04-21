@@ -79,7 +79,7 @@ export default function Header() {
   return (
     <header className={`nav ${scrolled ? "scrolled" : ""}`}>
       <Link href="/" className="nav-brand" aria-label="Agaricia Joias">
-        <AgariciaMark size={45} color="var(--ink)" />
+        <AgariciaMark size={60} color="var(--ink)" />
         <span className="nav-brand-text">AGARICIA</span>
       </Link>
 

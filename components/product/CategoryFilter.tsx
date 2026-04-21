@@ -38,7 +38,7 @@ export default function CategoryFilter({ products }: CategoryFilterProps) {
             onClick={() => setActiveCategory("all")}
             className={`cat-filter ${activeCategory === "all" ? "on" : ""}`}
           >
-            tudo
+            Tudo
           </button>
           {CATEGORIES.map((cat) => (
             <button
@@ -47,7 +47,7 @@ export default function CategoryFilter({ products }: CategoryFilterProps) {
               onClick={() => setActiveCategory(cat.value)}
               className={`cat-filter ${activeCategory === cat.value ? "on" : ""}`}
             >
-              {cat.label.toLowerCase()}
+              {cat.label}
             </button>
           ))}
         </div>

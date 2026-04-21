@@ -158,7 +158,7 @@
 }
 .nav-brand-text {
   font-family: var(--serif);
-  font-size: 22px;
+  font-size: 30px;
   letter-spacing: 0.08em;
   font-weight: 500;
   transform: translateY(-3px);
@@ -844,7 +844,6 @@
   color: var(--ink-soft);
   opacity: 0.65;
   transition: all 0.3s;
-  text-transform: lowercase;
   font-family: var(--sans);
   border: 2px solid transparent;
   cursor: pointer;
@@ -863,11 +862,11 @@
 .cat-count {
   font-family: var(--serif);
   font-style: italic;
-  font-size: 18px;
-  color: var(--tide);
+  font-size: 22px;
+  color: var(--ink);
 }
 .cat-count span {
-  font-size: 32px;
+  font-size: 36px;
   margin-right: 6px;
   color: var(--ink);
   font-style: italic;
@@ -1474,6 +1473,7 @@
     align-items: center;
   }
   .hero { padding: 120px 0 40px; min-height: auto; }
+  .hero-scroll { display: none; }
   .manifesto { padding: 80px 0; min-height: auto; }
   .process { padding: 80px 0; }
   .testimonials { padding: 80px 0; }
@@ -1505,6 +1505,8 @@
   .sig-spec strong { font-size: 28px; }
   .footer-top { grid-template-columns: 1fr; gap: 40px; }
   .footer-cols { grid-template-columns: 1fr 1fr; }
+  .footer-brand { gap: 12px; flex-wrap: wrap; }
+  .footer-brand-name { font-size: 22px; letter-spacing: 0.08em; }
   .ag-container { padding: 0 20px; }
 
   /* Catalog */

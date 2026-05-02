@@ -34,9 +34,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const state = process.env.NEXT_PUBLIC_STORE_STATE ?? "RJ";
 
   const title = product.meta_title ?? `${product.name} | ${storeName}`;
+  const productMaterial = product.material || "Prata 925";
   const description =
     product.meta_description ??
-    `${product.name} em ${product.material}. Atendimento VIP em domicílio em ${city}, ${state}. Conheça nossa coleção de joias de prata 925.`;
+    `${product.name} em ${productMaterial}. Atendimento VIP em domicílio em ${city}, ${state}. Conheça nossa coleção de joias de prata 925.`;
 
   const imageUrl = product.images[0] ? ogImage(product.images[0]) : undefined;
 
@@ -75,6 +76,7 @@ export default async function ProductPage({ params }: Props) {
     description: product.description,
     image: product.images.map((img) => ogImage(img)),
     brand: { "@type": "Brand", name: storeName },
+    ...(product.material && { material: product.material }),
     ...(product.price && {
       offers: {
         "@type": "Offer",
@@ -143,6 +145,12 @@ export default async function ProductPage({ params }: Props) {
                   <strong>Categoria</strong>
                   <span>{categoryLabel}</span>
                 </li>
+                {product.ring_size && (
+                  <li>
+                    <strong>Número</strong>
+                    <span>Aro {product.ring_size}</span>
+                  </li>
+                )}
                 <li>
                   <strong>Atendimento</strong>
                   <span>VIP em domicílio</span>

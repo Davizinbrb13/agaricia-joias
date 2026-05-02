@@ -20,7 +20,8 @@ create table if not exists public.products (
   available     boolean default true,
   featured      boolean default false,
   meta_title    text,
-  meta_description text
+  meta_description text,
+  ring_size     text
 );
 
 -- Row Level Security
@@ -41,7 +42,7 @@ create index if not exists idx_products_slug on public.products (slug);
 -- Substitua os Cloudinary public IDs pelos seus reais
 -- ===========================================
 
-INSERT INTO public.products (name, slug, description, price, category, material, tags, images, thumbnail, available, featured) VALUES
+INSERT INTO public.products (name, slug, description, price, category, material, tags, images, thumbnail, available, featured, ring_size) VALUES
 
 -- ANÉIS
 ('Anel Solitário Cravejado', 'anel-solitario-cravejado',
@@ -49,14 +50,14 @@ INSERT INTO public.products (name, slug, description, price, category, material,
  189.90, 'aneis', 'Prata 925 com Zircônia',
  ARRAY['presente', 'noivado', 'delicado'],
  ARRAY['agaricia/anel-solitario-1', 'agaricia/anel-solitario-2'],
- 'agaricia/anel-solitario-1', true, true),
+ 'agaricia/anel-solitario-1', true, true, '17'),
 
 ('Anel Meia Aliança', 'anel-meia-alianca',
  'Meia aliança em prata 925 com fileira de zircônias. Elegância discreta para o dia a dia.',
  159.90, 'aneis', 'Prata 925 com Zircônia',
  ARRAY['dia-a-dia', 'elegante', 'delicado'],
  ARRAY['agaricia/anel-meia-alianca-1'],
- 'agaricia/anel-meia-alianca-1', true, false),
+ 'agaricia/anel-meia-alianca-1', true, false, '18'),
 
 -- COLARES
 ('Colar Ponto de Luz', 'colar-ponto-de-luz',
@@ -64,14 +65,14 @@ INSERT INTO public.products (name, slug, description, price, category, material,
  219.90, 'colares', 'Prata 925 com Zircônia',
  ARRAY['presente', 'delicado', 'dia-a-dia'],
  ARRAY['agaricia/colar-ponto-luz-1', 'agaricia/colar-ponto-luz-2'],
- 'agaricia/colar-ponto-luz-1', true, true),
+ 'agaricia/colar-ponto-luz-1', true, true, NULL),
 
 ('Colar Gota Cristal', 'colar-gota-cristal',
  'Colar com pingente em formato de gota, cristal incolor engastado em prata 925. Sofisticação em cada detalhe.',
  279.90, 'colares', 'Prata 925 com Cristal',
  ARRAY['festa', 'sofisticado', 'presente'],
  ARRAY['agaricia/colar-gota-1'],
- 'agaricia/colar-gota-1', true, false),
+ 'agaricia/colar-gota-1', true, false, NULL),
 
 -- BRINCOS
 ('Brinco Argola Cravejada', 'brinco-argola-cravejada',
@@ -79,14 +80,14 @@ INSERT INTO public.products (name, slug, description, price, category, material,
  149.90, 'brincos', 'Prata 925 com Zircônia',
  ARRAY['elegante', 'festa', 'dia-a-dia'],
  ARRAY['agaricia/brinco-argola-1', 'agaricia/brinco-argola-2'],
- 'agaricia/brinco-argola-1', true, true),
+ 'agaricia/brinco-argola-1', true, true, NULL),
 
 ('Brinco Gota Pendurada', 'brinco-gota-pendurada',
  'Brinco pendurado com gota de zircônia em prata 925. Perfeito para eventos especiais.',
  179.90, 'brincos', 'Prata 925 com Zircônia',
  ARRAY['festa', 'casamento', 'presente'],
  ARRAY['agaricia/brinco-gota-1'],
- 'agaricia/brinco-gota-1', true, false),
+ 'agaricia/brinco-gota-1', true, false, NULL),
 
 -- PULSEIRAS
 ('Pulseira Riviera', 'pulseira-riviera',
@@ -94,7 +95,7 @@ INSERT INTO public.products (name, slug, description, price, category, material,
  249.90, 'pulseiras', 'Prata 925 com Zircônia',
  ARRAY['classico', 'presente', 'elegante'],
  ARRAY['agaricia/pulseira-riviera-1', 'agaricia/pulseira-riviera-2'],
- 'agaricia/pulseira-riviera-1', true, true),
+ 'agaricia/pulseira-riviera-1', true, true, NULL),
 
 -- CONJUNTOS
 ('Conjunto Infinito', 'conjunto-infinito',
@@ -102,4 +103,4 @@ INSERT INTO public.products (name, slug, description, price, category, material,
  329.90, 'conjuntos', 'Prata 925',
  ARRAY['presente', 'romantico', 'conjunto'],
  ARRAY['agaricia/conjunto-infinito-1', 'agaricia/conjunto-infinito-2'],
- 'agaricia/conjunto-infinito-1', true, false);
+ 'agaricia/conjunto-infinito-1', true, false, NULL);

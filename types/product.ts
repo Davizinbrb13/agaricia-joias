@@ -7,7 +7,7 @@ export interface Product {
   description: string | null;
   price: number | null;
   category: string;
-  material: string;
+  material: string | null;
   tags: string[] | null;
   images: string[];
   thumbnail: string | null;
@@ -15,6 +15,7 @@ export interface Product {
   featured: boolean;
   meta_title: string | null;
   meta_description: string | null;
+  ring_size: string | null;
 }
 
 /** Categorias de produtos disponíveis */

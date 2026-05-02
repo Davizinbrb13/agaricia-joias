@@ -1,7 +1,7 @@
 import Link from "next/link";
 import AgariciaMark from "@/components/ui/AgariciaMark";
 
-const WA = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "5522981584686";
+const WA = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "5522988204885";
 
 export default function Footer() {
   return (

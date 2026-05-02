@@ -12,7 +12,7 @@ const NAV_LINKS = [
   { href: "/contato", label: "Contato" },
 ];
 
-const WA = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "5522981584686";
+const WA = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "5522988204885";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);

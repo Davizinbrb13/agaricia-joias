@@ -27,6 +27,9 @@ export default function CatalogCard({ product, index = 0 }: CatalogCardProps) {
   const categoryLabel =
     CATEGORIES.find((c) => c.value === product.category)?.label ??
     product.category;
+  const specs = [product.material, product.ring_size ? `Aro ${product.ring_size}` : null]
+    .filter(Boolean)
+    .join(" · ");
 
   function onMove(e: React.MouseEvent<HTMLAnchorElement>) {
     const el = ref.current;
@@ -97,6 +100,7 @@ export default function CatalogCard({ product, index = 0 }: CatalogCardProps) {
           <div>
             <div className="cat-card-cat">{categoryLabel}</div>
             <div className="cat-card-name">{product.name}</div>
+            {specs && <div className="cat-card-specs">{specs}</div>}
           </div>
 
         </div>

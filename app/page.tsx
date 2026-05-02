@@ -8,7 +8,8 @@ import JsonLd from "@/components/seo/JsonLd";
 
 const storeName = process.env.NEXT_PUBLIC_STORE_NAME ?? "Agaricia Jóias";
 const city = process.env.NEXT_PUBLIC_STORE_CITY ?? "Araruama";
-const WA = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "5522981584686";
+const WA = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "5522988204885";
+const phone = WA.startsWith("55") ? `+${WA}` : `+55${WA}`;
 
 export const revalidate = 60;
 
@@ -24,7 +25,7 @@ export default function HomePage() {
       addressRegion: "RJ",
       addressCountry: "BR",
     },
-    telephone: `+55${WA}`,
+    telephone: phone,
     priceRange: "$$",
     openingHours: "Mo-Sa 09:00-18:00",
   };

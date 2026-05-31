@@ -58,6 +58,9 @@ export default function ProductRow({
             </button>
           </>
         )}
+        {/* Reativar vale tanto para inativa quanto para vendida: a venda é um
+            evento permanente em `sales`, mas a peça pode voltar ao catálogo se
+            a dona conseguir outra igual. */}
         {product.status !== "disponivel" && (
           <button type="button" className="btn btn-primary" disabled={busy} onClick={() => onReactivate(product.id)}>
             Reativar

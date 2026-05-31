@@ -17,6 +17,17 @@ export default function AdminPage() {
         setReady(true);
       }
     });
+
+    // Se a sessão expirar/encerrar com o painel aberto, volta pro login
+    // (evita mutações que falhariam silenciosamente na RLS).
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((event) => {
+      if (event === "SIGNED_OUT") {
+        router.replace("/admin/login");
+      }
+    });
+    return () => subscription.unsubscribe();
   }, [router]);
 
   if (!ready) {

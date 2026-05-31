@@ -24,6 +24,7 @@ export default function AdminDashboard() {
   const [busyId, setBusyId] = useState<string | null>(null);
   const [showForm, setShowForm] = useState(false);
   const [selling, setSelling] = useState<Product | null>(null);
+  const [actionError, setActionError] = useState<string | null>(null);
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -37,14 +38,18 @@ export default function AdminDashboard() {
 
   async function handleDeactivate(id: string) {
     setBusyId(id);
-    await setProductStatus(id, "inativa");
+    setActionError(null);
+    const ok = await setProductStatus(id, "inativa");
+    if (!ok) setActionError("Não consegui desativar a peça. Tente de novo.");
     await load();
     setBusyId(null);
   }
 
   async function handleReactivate(id: string) {
     setBusyId(id);
-    await setProductStatus(id, "disponivel");
+    setActionError(null);
+    const ok = await setProductStatus(id, "disponivel");
+    if (!ok) setActionError("Não consegui reativar a peça. Tente de novo.");
     await load();
     setBusyId(null);
   }
@@ -53,7 +58,13 @@ export default function AdminDashboard() {
     if (!selling) return;
     const id = selling.id;
     setBusyId(id);
-    await recordSale(id, description);
+    setActionError(null);
+    const ok = await recordSale(id, description);
+    if (!ok) {
+      setActionError(
+        "A venda pode não ter sido registrada por completo. Confira o status da peça."
+      );
+    }
     setSelling(null);
     await load();
     setBusyId(null);
@@ -85,6 +96,9 @@ export default function AdminDashboard() {
 
         {tab === "pecas" && (
           <>
+            {actionError && (
+              <p style={{ color: "#b00020", marginBottom: 16 }}>{actionError}</p>
+            )}
             <div style={{ marginBottom: 20 }}>
               <button type="button" className="btn btn-primary" onClick={() => setShowForm((s) => !s)}>
                 {showForm ? "Fechar" : "+ Nova peça"}

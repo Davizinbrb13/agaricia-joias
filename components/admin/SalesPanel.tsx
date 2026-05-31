@@ -6,11 +6,10 @@ import { salesToCsv, formatSaleDate } from "@/lib/sales-export";
 import type { SaleWithProduct } from "@/types/sale";
 import { CATEGORIES } from "@/types/product";
 
-const now = new Date();
-
 export default function SalesPanel() {
-  const [year, setYear] = useState(now.getUTCFullYear());
-  const [month, setMonth] = useState(now.getUTCMonth() + 1);
+  // Avaliado na montagem (não no load do módulo) para não congelar a data.
+  const [year, setYear] = useState(() => new Date().getUTCFullYear());
+  const [month, setMonth] = useState(() => new Date().getUTCMonth() + 1);
   const [sales, setSales] = useState<SaleWithProduct[]>([]);
   const [loaded, setLoaded] = useState(false);
   const [loading, setLoading] = useState(false);

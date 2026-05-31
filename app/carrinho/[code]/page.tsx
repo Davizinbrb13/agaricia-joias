@@ -57,7 +57,7 @@ export default async function SharedCartPage({ params }: Props) {
                   opacity: unavailable ? 0.6 : 1,
                 }}
               >
-                <Image src={img} alt={p.name} width={72} height={72} style={{ borderRadius: 8 }} />
+                <Image src={img} alt={p.name} width={72} height={72} sizes="72px" style={{ borderRadius: 8, objectFit: "cover" }} />
                 <div style={{ flex: 1 }}>
                   <div style={{ fontSize: 13, color: "var(--tide, #3a6ea5)" }}>{categoryLabel}</div>
                   <strong>{p.name}</strong>

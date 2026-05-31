@@ -19,6 +19,8 @@ export default function CarrinhoPage() {
 
   useEffect(() => {
     let active = true;
+    // a seleção mudou: o link gerado antes ficou desatualizado
+    setLink(null);
     setLoading(true);
     getProductsByIds(ids).then((data) => {
       if (active) {
@@ -96,7 +98,7 @@ export default function CarrinhoPage() {
                   borderRadius: 12,
                 }}
               >
-                <Image src={img} alt={p.name} width={64} height={64} style={{ borderRadius: 8 }} />
+                <Image src={img} alt={p.name} width={64} height={64} sizes="64px" style={{ borderRadius: 8, objectFit: "cover" }} />
                 <div style={{ flex: 1 }}>
                   <strong>{p.name}</strong>
                 </div>

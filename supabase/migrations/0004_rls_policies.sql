@@ -32,11 +32,13 @@ create policy "products_admin_write"
 -- CARTS: qualquer um cria e lê (pelo code); ninguém edita/apaga
 alter table public.carts enable row level security;
 
+-- Qualquer um cria, mas com teto de itens para evitar lixo/abuso
+-- (array vazio => array_length retorna NULL, daí o coalesce).
 drop policy if exists "carts_anon_insert" on public.carts;
 create policy "carts_anon_insert"
   on public.carts for insert
   to anon, authenticated
-  with check (true);
+  with check (coalesce(array_length(product_ids, 1), 0) <= 100);
 
 drop policy if exists "carts_public_read" on public.carts;
 create policy "carts_public_read"

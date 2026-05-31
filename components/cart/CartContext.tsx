@@ -34,19 +34,21 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     setIds(readCart());
   }, []);
 
-  const persist = useCallback((next: string[]) => {
-    setIds(next);
-    writeCart(next);
+  // Atualiza a partir do estado atual (fonte única de verdade) e persiste.
+  const add = useCallback((id: string) => {
+    setIds((prev) => {
+      const next = addId(prev, id);
+      writeCart(next);
+      return next;
+    });
   }, []);
-
-  const add = useCallback(
-    (id: string) => persist(addId(readCart(), id)),
-    [persist]
-  );
-  const remove = useCallback(
-    (id: string) => persist(removeId(readCart(), id)),
-    [persist]
-  );
+  const remove = useCallback((id: string) => {
+    setIds((prev) => {
+      const next = removeId(prev, id);
+      writeCart(next);
+      return next;
+    });
+  }, []);
   const clear = useCallback(() => {
     clearStorage();
     setIds([]);

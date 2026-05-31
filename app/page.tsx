@@ -47,6 +47,7 @@ export default function HomePage() {
                 src="/Embelezador de Produtos-418749fb-e261-4ee0-8f27-69840365814f.jpg"
                 alt="Pulseira em destaque"
                 fill
+                sizes="(max-width: 900px) 280px, (max-width: 1400px) 50vw, 600px"
                 style={{ objectFit: "cover" }}
               />
             </div>
@@ -55,6 +56,7 @@ export default function HomePage() {
                 src="/Embelezador de Produtos-21381872-ba80-4108-a36b-a7f43b7485c7.jpg"
                 alt="Detalhe do anel"
                 fill
+                sizes="(max-width: 900px) 126px, (max-width: 1400px) 25vw, 270px"
                 style={{ objectFit: "cover" }}
               />
             </div>

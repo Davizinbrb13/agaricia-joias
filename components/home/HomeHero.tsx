@@ -69,13 +69,13 @@ export default function HomeHero() {
         {/* Photo variant parallax visual */}
         <div className="hero-visual">
           <div ref={pebbleLgRef} className="hero-pebble-lg pebble pebble-a">
-            <Image src="/Captura de tela_12-11-2025_212846_www.instagram.com.jpg" alt="Foto Tornozeleira" fill style={{ objectFit: "cover" }} />
+            <Image src="/Captura de tela_12-11-2025_212846_www.instagram.com.jpg" alt="Foto Tornozeleira" fill sizes="(max-width: 900px) 220px, 340px" style={{ objectFit: "cover" }} />
           </div>
           <div ref={pebbleMdRef} className="hero-pebble-md pebble pebble-b">
-            <Image src="/Captura de tela_12-11-2025_212727_www.instagram.com.jpg" alt="Foto Anel" fill style={{ objectFit: "cover" }} />
+            <Image src="/Captura de tela_12-11-2025_212727_www.instagram.com.jpg" alt="Foto Anel" fill sizes="(max-width: 900px) 0px, 180px" style={{ objectFit: "cover" }} />
           </div>
           <div ref={pebbleSmRef} className="hero-pebble-sm pebble pebble-c">
-            <Image src="/Captura de tela_12-11-2025_21286_www.instagram.com.jpg" alt="Foto Detalhe" fill style={{ objectFit: "cover" }} />
+            <Image src="/Captura de tela_12-11-2025_21286_www.instagram.com.jpg" alt="Foto Detalhe" fill sizes="(max-width: 900px) 0px, 140px" style={{ objectFit: "cover" }} />
           </div>
         </div>
       </div>

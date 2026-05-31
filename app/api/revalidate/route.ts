@@ -9,7 +9,16 @@ import { revalidatePath } from "next/cache";
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
+    let body;
+    try {
+      body = await request.json();
+    } catch {
+      return NextResponse.json(
+        { message: "Corpo da requisição inválido ou ausente." },
+        { status: 400 }
+      );
+    }
+
     const { secret, slug } = body;
 
     if (!secret || secret !== process.env.REVALIDATE_SECRET) {

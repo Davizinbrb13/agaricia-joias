@@ -13,6 +13,7 @@ export interface Product {
   tags: string[] | null;
   images: string[];
   thumbnail: string | null;
+  /** @deprecated Use `status`. Mantido só para compatibilidade com o bot/seed. */
   available: boolean;
   status: ProductStatus;
   featured: boolean;

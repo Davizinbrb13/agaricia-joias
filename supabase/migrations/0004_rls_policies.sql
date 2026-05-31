@@ -1,7 +1,20 @@
 -- 0004: Row Level Security
 
+-- Modelo de admin: NÃO há checagem de role. Qualquer usuário autenticado é
+-- tratado como admin. Isso só é seguro porque o cadastro de novos usuários
+-- está DESABILITADO no painel do Supabase (Authentication → Providers →
+-- "Allow new users to sign up" = OFF) e existe apenas a conta da dona da loja.
+-- Se um dia houver signup público, troque "to authenticated using(true)" por
+-- uma checagem de claim (ex.: auth.jwt() ->> 'role' = 'admin').
+
 -- PRODUCTS: leitura pública, escrita só autenticado (admin)
 alter table public.products enable row level security;
+
+-- Remove a policy antiga do seed (using available = true). Mantê-la criaria
+-- duas policies de SELECT em OR. A leitura pública agora é "using (true)"
+-- de propósito: o link de carrinho precisa ler peças por id mesmo quando
+-- ficaram inativas/vendidas (para exibir "não disponível").
+drop policy if exists "Public read available products" on public.products;
 
 drop policy if exists "products_public_read" on public.products;
 create policy "products_public_read"

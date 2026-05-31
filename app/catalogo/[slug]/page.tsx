@@ -4,6 +4,7 @@ import Link from "next/link";
 import ProductGallery from "@/components/product/ProductGallery";
 import CatalogCard from "@/components/product/CatalogCard";
 import JsonLd from "@/components/seo/JsonLd";
+import AddToCartButton from "@/components/cart/AddToCartButton";
 import { getProductBySlug, getRelatedProducts, getAllSlugs } from "@/lib/queries";
 import { getProductWhatsAppUrl } from "@/lib/whatsapp";
 import { ogImage } from "@/lib/cloudinary";
@@ -123,6 +124,7 @@ export default async function ProductPage({ params }: Props) {
               )}
 
               <div className="produto-actions">
+                <AddToCartButton productId={product.id} />
                 <a
                   href={whatsAppUrl}
                   target="_blank"

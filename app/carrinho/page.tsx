@@ -16,10 +16,10 @@ export default function CarrinhoPage() {
   const [link, setLink] = useState<string | null>(null);
   const [generating, setGenerating] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     let active = true;
-    // a seleção mudou: o link gerado antes ficou desatualizado
     setLink(null);
     setLoading(true);
     getProductsByIds(ids).then((data) => {
@@ -46,121 +46,147 @@ export default function CarrinhoPage() {
     setLink(`${window.location.origin}/carrinho/${cart.code}`);
   }
 
+  function handleCopy() {
+    if (!link) return;
+    navigator.clipboard?.writeText(link).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  }
+
+  // SKELETON LOADING UI (Luxury Shimmer Skeletons)
   if (loading) {
     return (
-      <section>
-        <div className="ag-container" style={{ padding: "60px 0" }}>
-          <p>Carregando seu carrinho…</p>
+      <section className="cart-page-wrapper">
+        <div className="ag-container">
+          <div className="cart-glass-card">
+            <div className="skeleton w-48 h-10 mb-4" />
+            <div className="skeleton w-72 h-4 mb-8" />
+            <div className="grid gap-4">
+              {Array.from({ length: 3 }).map((_, i) => (
+                <div key={i} className="flex items-center gap-4 p-4 border border-brand-ink/5 rounded-xl">
+                  <div className="skeleton w-16 h-16 rounded-lg" />
+                  <div className="flex-1">
+                    <div className="skeleton w-1/3 h-5 mb-2" />
+                    <div className="skeleton w-1/4 h-4" />
+                  </div>
+                  <div className="skeleton w-20 h-9 rounded-full" />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
     );
   }
 
+  // EMPTY STATE UI
   if (ids.length === 0) {
     return (
-      <section>
-        <div className="ag-container" style={{ padding: "60px 0", textAlign: "center" }}>
-          <h1 className="produto-name">Seu carrinho está vazio</h1>
-          <p>Volte ao catálogo e separe as peças que você quer experimentar.</p>
-          <Link href="/catalogo" className="btn btn-primary" style={{ marginTop: 16 }}>
-            Ver catálogo
-          </Link>
+      <section className="cart-page-wrapper">
+        <div className="ag-container">
+          <div className="cart-glass-card text-center" style={{ padding: "60px 40px" }}>
+            <div style={{ display: "flex", justifyContent: "center", marginBottom: 24 }}>
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--tide)" strokeWidth="1.2">
+                <path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </div>
+            <h1 className="cart-title">Sua sacola está vazia</h1>
+            <p className="cart-subtitle" style={{ maxWidth: 460, margin: "0 auto 32px" }}>
+              Explore nosso catálogo e separe as peças que você deseja experimentar em domicílio, sem compromisso.
+            </p>
+            <Link href="/catalogo" className="btn btn-primary">
+              Ver catálogo <span className="arrow">→</span>
+            </Link>
+          </div>
         </div>
       </section>
     );
   }
 
   return (
-    <section>
-      <div className="ag-container" style={{ padding: "48px 0" }}>
-        <h1 className="produto-name">Minhas peças favoritas</h1>
-        <p style={{ marginBottom: 24 }}>
-          Separe as peças e gere um link para enviar no WhatsApp. A gente leva
-          exatamente essas peças até você.
-        </p>
+    <section className="cart-page-wrapper">
+      <div className="ag-container">
+        <div className="cart-glass-card">
+          <h1 className="cart-title">Peças favoritas</h1>
+          <p className="cart-subtitle">
+            Separe as peças e gere um link único para enviar pelo WhatsApp. Nós levaremos exatamente esse mostruário até você.
+          </p>
 
-        <ul style={{ listStyle: "none", padding: 0, display: "grid", gap: 16 }}>
-          {products.map((p) => {
-            const img = p.thumbnail
-              ? productThumbnail(p.thumbnail)
-              : p.images[0]
-                ? productThumbnail(p.images[0])
-                : "/placeholder-product.jpg";
-            return (
-              <li
-                key={p.id}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 16,
-                  padding: 12,
-                  border: "1px solid rgba(15,36,68,0.15)",
-                  borderRadius: 12,
-                }}
-              >
-                <Image src={img} alt={p.name} width={64} height={64} sizes="64px" style={{ borderRadius: 8, objectFit: "cover" }} />
-                <div style={{ flex: 1 }}>
-                  <strong>{p.name}</strong>
+          <ul style={{ listStyle: "none", padding: 0, display: "grid", gap: 16 }}>
+            {products.map((p) => {
+              const img = p.thumbnail
+                ? productThumbnail(p.thumbnail)
+                : p.images[0]
+                  ? productThumbnail(p.images[0])
+                  : "/placeholder-product.jpg";
+              return (
+                <li key={p.id} className="cart-item-row">
+                  <div className="cart-item-thumb" style={{ width: 64, height: 64 }}>
+                    <Image src={img} alt={p.name} fill sizes="64px" style={{ objectFit: "cover" }} />
+                  </div>
+                  <div className="cart-item-info">
+                    <strong className="cart-item-name">{p.name}</strong>
+                    <div className="cart-item-spec">
+                      {p.material || "Prata 925"} {p.ring_size ? ` · Aro ${p.ring_size}` : ""}
+                    </div>
+                  </div>
+                  <button type="button" className="cart-remove-btn" onClick={() => remove(p.id)}>
+                    Remover
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+
+          <div style={{ marginTop: 36 }}>
+            {link ? (
+              <div className="cart-share-box">
+                <p style={{ marginBottom: 12, fontWeight: 500, color: "var(--ink)" }}>
+                  💡 Pronto! Copie o link abaixo para enviar:
+                </p>
+                <input
+                  readOnly
+                  value={link}
+                  onFocus={(e) => e.currentTarget.select()}
+                  className="cart-share-input"
+                />
+                <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+                  <button
+                    type="button"
+                    className="btn btn-ghost"
+                    onClick={handleCopy}
+                    style={{ transition: "all 0.3s", borderColor: copied ? "var(--tide)" : "" }}
+                  >
+                    {copied ? "✓ Copiado!" : "Copiar link"}
+                  </button>
+                  <a
+                    className="btn btn-primary btn-whatsapp-pulse"
+                    href={`https://wa.me/?text=${encodeURIComponent(
+                      `Oi! Separei minhas peças favoritas da Agaricia no site: ${link}`
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Enviar no WhatsApp
+                  </a>
                 </div>
-                <button type="button" className="btn btn-ghost" onClick={() => remove(p.id)}>
-                  Remover
-                </button>
-              </li>
-            );
-          })}
-        </ul>
-
-        <div style={{ marginTop: 32 }}>
-          {link ? (
-            <div
-              style={{
-                padding: 20,
-                border: "1px solid rgba(15,36,68,0.2)",
-                borderRadius: 12,
-              }}
-            >
-              <p style={{ marginBottom: 12 }}>
-                <strong>Pronto!</strong> Copie e envie este link no WhatsApp:
-              </p>
-              <input
-                readOnly
-                value={link}
-                onFocus={(e) => e.currentTarget.select()}
-                style={{ width: "100%", padding: 10, borderRadius: 8, marginBottom: 12 }}
-              />
-              <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+              </div>
+            ) : (
+              <div style={{ textAlign: "center", marginTop: 24 }}>
                 <button
                   type="button"
-                  className="btn btn-ghost"
-                  onClick={() => navigator.clipboard?.writeText(link)}
-                >
-                  Copiar link
-                </button>
-                <a
                   className="btn btn-primary"
-                  href={`https://wa.me/?text=${encodeURIComponent(
-                    `Oi! Separei minhas peças favoritas: ${link}`
-                  )}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  onClick={handleGenerate}
+                  disabled={generating}
+                  style={{ minWidth: 200 }}
                 >
-                  Enviar no WhatsApp
-                </a>
+                  {generating ? "Gerando link…" : "Gerar link da sacola"}
+                </button>
+                {error && <p style={{ color: "#b00020", marginTop: 12, fontSize: 14 }}>{error}</p>}
               </div>
-            </div>
-          ) : (
-            <>
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={handleGenerate}
-                disabled={generating}
-              >
-                {generating ? "Gerando…" : "Gerar link para enviar"}
-              </button>
-              {error && <p style={{ color: "#b00020", marginTop: 12 }}>{error}</p>}
-            </>
-          )}
+            )}
+          </div>
         </div>
       </div>
     </section>

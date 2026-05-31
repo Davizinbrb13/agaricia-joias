@@ -3,39 +3,10 @@ export default function CatalogoLoading() {
     <>
       {/* Header skeleton */}
       <header className="cat-header">
-        <div className="ag-container">
-          <div
-            style={{
-              width: 120,
-              height: 14,
-              borderRadius: 4,
-              background: 'var(--silver)',
-              opacity: 0.4,
-              marginBottom: 16,
-              animation: 'shimmer-pulse 1.4s ease-in-out infinite',
-            }}
-          />
-          <div
-            style={{
-              width: 240,
-              height: 40,
-              borderRadius: 8,
-              background: 'var(--silver)',
-              opacity: 0.3,
-              marginBottom: 12,
-              animation: 'shimmer-pulse 1.4s ease-in-out infinite',
-            }}
-          />
-          <div
-            style={{
-              width: '60%',
-              height: 18,
-              borderRadius: 4,
-              background: 'var(--silver)',
-              opacity: 0.25,
-              animation: 'shimmer-pulse 1.4s ease-in-out infinite',
-            }}
-          />
+        <div className="ag-container flex flex-col items-center">
+          <div className="skeleton w-32 h-4 mb-4" />
+          <div className="skeleton w-64 h-12 mb-3" />
+          <div className="skeleton w-1/2 h-5 mb-8" />
         </div>
       </header>
 
@@ -43,18 +14,12 @@ export default function CatalogoLoading() {
       <section style={{ paddingBottom: 60 }}>
         <div className="ag-container">
           {/* Filter bar skeleton */}
-          <div style={{ display: 'flex', gap: 10, marginBottom: 40, flexWrap: 'wrap' }}>
+          <div className="flex gap-3 mb-10 flex-wrap justify-center sm:justify-start">
             {Array.from({ length: 6 }).map((_, i) => (
               <div
                 key={i}
-                style={{
-                  width: 80 + i * 10,
-                  height: 36,
-                  borderRadius: 20,
-                  background: 'var(--silver)',
-                  opacity: 0.25,
-                  animation: `shimmer-pulse 1.4s ease-in-out ${i * 0.1}s infinite`,
-                }}
+                className="skeleton h-9 rounded-full"
+                style={{ width: `${80 + i * 15}px` }}
               />
             ))}
           </div>
@@ -64,28 +29,12 @@ export default function CatalogoLoading() {
             {Array.from({ length: 6 }).map((_, i) => (
               <div
                 key={i}
-                style={{
-                  aspectRatio: '1',
-                  borderRadius: 20,
-                  background: `linear-gradient(135deg, var(--sand-deep), var(--mist))`,
-                  opacity: 0.4,
-                  animation: `shimmer-pulse 1.4s ease-in-out ${i * 0.08}s infinite`,
-                }}
+                className="skeleton rounded-3xl aspect-[1/1.15]"
               />
             ))}
           </div>
         </div>
       </section>
-
-      <style>{`
-        @keyframes shimmer-pulse {
-          0%, 100% { opacity: 0.25; }
-          50% { opacity: 0.45; }
-        }
-        @media (prefers-reduced-motion: reduce) {
-          [style*="shimmer-pulse"] { animation: none !important; }
-        }
-      `}</style>
     </>
-  )
+  );
 }

@@ -1,3 +1,5 @@
+export type ProductStatus = "disponivel" | "inativa" | "vendida";
+
 export interface Product {
   id: string;
   created_at: string;
@@ -12,6 +14,7 @@ export interface Product {
   images: string[];
   thumbnail: string | null;
   available: boolean;
+  status: ProductStatus;
   featured: boolean;
   meta_title: string | null;
   meta_description: string | null;

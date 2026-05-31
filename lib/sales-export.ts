@@ -2,7 +2,7 @@ import type { SaleWithProduct } from "@/types/sale";
 import { CATEGORIES } from "@/types/product";
 
 function csvEscape(value: string): string {
-  if (/[",\n]/.test(value)) {
+  if (/[",\n\r]/.test(value)) {
     return `"${value.replace(/"/g, '""')}"`;
   }
   return value;

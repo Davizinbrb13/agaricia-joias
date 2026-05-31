@@ -23,7 +23,13 @@ export async function uploadProductImage(file: File): Promise<string> {
   );
 
   if (!res.ok) {
-    throw new Error("Falha no upload da imagem para o Cloudinary.");
+    const errBody = (await res.json().catch(() => ({}))) as {
+      error?: { message?: string };
+    };
+    const detail = errBody.error?.message;
+    throw new Error(
+      detail ? `Cloudinary: ${detail}` : "Falha no upload da imagem para o Cloudinary."
+    );
   }
 
   const data = (await res.json()) as {

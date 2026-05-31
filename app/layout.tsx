@@ -4,6 +4,8 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import OceanBackground from "@/components/layout/OceanBackground";
 import Analytics from "@/components/Analytics";
+import { CartProvider } from "@/components/cart/CartContext";
+import CartBar from "@/components/cart/CartBar";
 import "./globals.css";
 
 const storeName = process.env.NEXT_PUBLIC_STORE_NAME ?? "Agaricia Jóias";
@@ -55,11 +57,14 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className={`${inter.variable} ${cormorant.variable}`}>
       <body style={{ minHeight: "100vh" }}>
-        <OceanBackground />
-        <Header />
-        <main>{children}</main>
-        <Footer />
-        <Analytics />
+        <CartProvider>
+          <OceanBackground />
+          <Header />
+          <main>{children}</main>
+          <Footer />
+          <Analytics />
+          <CartBar />
+        </CartProvider>
       </body>
     </html>
   );

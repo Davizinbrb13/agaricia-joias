@@ -25,6 +25,7 @@ export default function NewProductForm({ onCreated }: { onCreated: () => void })
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [dragOver, setDragOver] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const blobUrlsRef = useRef<string[]>([]);
 
   // Auto-detect name and category from file name
   function parseFilename(fileName: string) {
@@ -57,10 +58,12 @@ export default function NewProductForm({ onCreated }: { onCreated: () => void })
     Array.from(files).forEach((file) => {
       if (!file.type.startsWith("image/")) return;
       const { name, category } = parseFilename(file.name);
+      const previewUrl = URL.createObjectURL(file);
+      blobUrlsRef.current.push(previewUrl);
       newItems.push({
         id: Math.random().toString(36).substring(2, 9) + Date.now(),
         file,
-        previewUrl: URL.createObjectURL(file),
+        previewUrl,
         status: "pendente",
         name,
         price: "",
@@ -82,16 +85,16 @@ export default function NewProductForm({ onCreated }: { onCreated: () => void })
     });
   };
 
-  // Revoke URLs on removal/unmount to prevent memory leaks
+  // Revoke URLs on unmount to prevent memory leaks
   useEffect(() => {
     return () => {
-      queue.forEach((item) => {
-        if (item.previewUrl.startsWith("blob:")) {
-          URL.revokeObjectURL(item.previewUrl);
+      blobUrlsRef.current.forEach((url) => {
+        if (url.startsWith("blob:")) {
+          URL.revokeObjectURL(url);
         }
       });
     };
-  }, [queue]);
+  }, []);
 
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
@@ -140,6 +143,7 @@ export default function NewProductForm({ onCreated }: { onCreated: () => void })
     const item = queue[indexToRemove];
     if (item && item.previewUrl.startsWith("blob:")) {
       URL.revokeObjectURL(item.previewUrl);
+      blobUrlsRef.current = blobUrlsRef.current.filter((url) => url !== item.previewUrl);
     }
     setQueue((prev) => {
       const nextQueue = prev.filter((_, idx) => idx !== indexToRemove);
@@ -151,11 +155,12 @@ export default function NewProductForm({ onCreated }: { onCreated: () => void })
   };
 
   const clearQueue = () => {
-    queue.forEach((item) => {
-      if (item.previewUrl.startsWith("blob:")) {
-        URL.revokeObjectURL(item.previewUrl);
+    blobUrlsRef.current.forEach((url) => {
+      if (url.startsWith("blob:")) {
+        URL.revokeObjectURL(url);
       }
     });
+    blobUrlsRef.current = [];
     setQueue([]);
     setActiveIndex(0);
   };

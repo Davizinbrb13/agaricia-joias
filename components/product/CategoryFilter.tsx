@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { CATEGORIES } from "@/types/product";
 import type { Product } from "@/types/product";
 import CatalogCard from "./CatalogCard";
@@ -12,9 +13,25 @@ interface CategoryFilterProps {
 const PAGE_SIZE = 12;
 
 export default function CategoryFilter({ products }: CategoryFilterProps) {
-  const [activeCategory, setActiveCategory] = useState<string>("all");
-  const [activeRingSize, setActiveRingSize] = useState<string>("all");
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  // A URL é a fonte da verdade do filtro: assim ele persiste ao voltar de uma
+  // peça (botão do site ou do navegador) e o link fica compartilhável.
+  const activeCategory = searchParams.get("cat") ?? "all";
+  const activeRingSize =
+    activeCategory === "anel" ? searchParams.get("aro") ?? "all" : "all";
+
   const [visibleCount, setVisibleCount] = useState<number>(PAGE_SIZE);
+
+  function applyFilter(cat: string, aro: string) {
+    const params = new URLSearchParams();
+    if (cat !== "all") params.set("cat", cat);
+    if (cat === "anel" && aro !== "all") params.set("aro", aro);
+    const qs = params.toString();
+    router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
+  }
 
   const ringSizes = useMemo(() => {
     return Array.from(
@@ -34,12 +51,6 @@ export default function CategoryFilter({ products }: CategoryFilterProps) {
       return a.localeCompare(b, "pt-BR", { numeric: true });
     });
   }, [products]);
-
-  useEffect(() => {
-    if (activeCategory !== "anel") {
-      setActiveRingSize("all");
-    }
-  }, [activeCategory]);
 
   // Ao trocar de filtro, volta a mostrar o primeiro lote
   useEffect(() => {
@@ -69,7 +80,7 @@ export default function CategoryFilter({ products }: CategoryFilterProps) {
           <div className="cat-filters" aria-label="Filtrar por categoria">
             <button
               type="button"
-              onClick={() => setActiveCategory("all")}
+              onClick={() => applyFilter("all", "all")}
               className={`cat-filter ${activeCategory === "all" ? "on" : ""}`}
               aria-pressed={activeCategory === "all"}
             >
@@ -79,7 +90,7 @@ export default function CategoryFilter({ products }: CategoryFilterProps) {
               <button
                 key={cat.value}
                 type="button"
-                onClick={() => setActiveCategory(cat.value)}
+                onClick={() => applyFilter(cat.value, "all")}
                 className={`cat-filter ${activeCategory === cat.value ? "on" : ""}`}
                 aria-pressed={activeCategory === cat.value}
               >
@@ -102,7 +113,7 @@ export default function CategoryFilter({ products }: CategoryFilterProps) {
             <div className="cat-ring-sizes">
               <button
                 type="button"
-                onClick={() => setActiveRingSize("all")}
+                onClick={() => applyFilter("anel", "all")}
                 className={`cat-ring-size ${activeRingSize === "all" ? "on" : ""}`}
                 aria-pressed={activeRingSize === "all"}
               >
@@ -112,10 +123,7 @@ export default function CategoryFilter({ products }: CategoryFilterProps) {
                 <button
                   key={size}
                   type="button"
-                  onClick={() => {
-                    setActiveCategory("anel");
-                    setActiveRingSize(size);
-                  }}
+                  onClick={() => applyFilter("anel", size)}
                   className={`cat-ring-size ${activeRingSize === size ? "on" : ""}`}
                   aria-label={`Filtrar aneis numero ${size}`}
                   aria-pressed={activeRingSize === size}

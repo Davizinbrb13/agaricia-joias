@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import CategoryFilter from "@/components/product/CategoryFilter";
 import { getProducts } from "@/lib/queries";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
@@ -32,7 +33,9 @@ export default async function CatalogoPage() {
 
       <section style={{ paddingBottom: 60 }}>
         <div className="ag-container">
-          <CategoryFilter products={products} />
+          <Suspense fallback={<div className="cat-controls-shell" />}>
+            <CategoryFilter products={products} />
+          </Suspense>
         </div>
       </section>
 

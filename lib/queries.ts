@@ -56,15 +56,27 @@ export const getProductBySlug = cache(
   }
 );
 
-/** Busca produtos da mesma categoria (excluindo um ID específico) */
+/** Busca produtos da mesma categoria (excluindo um ID específico).
+ *  Para anéis, filtra pelo mesmo aro quando informado — assim a seção
+ *  "você também pode gostar" não mistura tamanhos diferentes. */
 export const getRelatedProducts = cache(
-  async (category: string, excludeId: string): Promise<Product[]> => {
-    const { data, error } = await supabase
+  async (
+    category: string,
+    excludeId: string,
+    ringSize?: string | null
+  ): Promise<Product[]> => {
+    let query = supabase
       .from("products")
       .select("*")
       .eq("status", "disponivel")
       .eq("category", category)
-      .neq("id", excludeId)
+      .neq("id", excludeId);
+
+    if (ringSize) {
+      query = query.eq("ring_size", ringSize);
+    }
+
+    const { data, error } = await query
       .order("created_at", { ascending: false })
       .limit(4);
 

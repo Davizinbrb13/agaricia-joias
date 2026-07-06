@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import ProductGallery from "@/components/product/ProductGallery";
 import CatalogCard from "@/components/product/CatalogCard";
+import BackToCatalog from "@/components/product/BackToCatalog";
 import JsonLd from "@/components/seo/JsonLd";
 import AddToCartButton from "@/components/cart/AddToCartButton";
 import { getProductBySlug, getRelatedProducts, getAllSlugs } from "@/lib/queries";
@@ -62,7 +63,11 @@ export default async function ProductPage({ params }: Props) {
     notFound();
   }
 
-  const relatedProducts = await getRelatedProducts(product.category, product.id);
+  const relatedProducts = await getRelatedProducts(
+    product.category,
+    product.id,
+    product.ring_size
+  );
   const whatsAppUrl = getProductWhatsAppUrl(product.name);
 
   const storeName = process.env.NEXT_PUBLIC_STORE_NAME ?? "Agaricia Jóias";
@@ -99,9 +104,9 @@ export default async function ProductPage({ params }: Props) {
             <ProductGallery images={product.images} productName={product.name} />
 
             <div className="produto-info">
-              <Link href="/catalogo" className="produto-back">
+              <BackToCatalog className="produto-back">
                 ← voltar ao catálogo
-              </Link>
+              </BackToCatalog>
 
 
 
@@ -175,6 +180,7 @@ export default async function ProductPage({ params }: Props) {
                 Mais peças da categoria{" "}
                 <em style={{ fontStyle: "italic", color: "var(--tide)" }}>
                   {categoryLabel.toLowerCase()}
+                  {product.ring_size ? ` · aro ${product.ring_size}` : ""}
                 </em>
               </h2>
             </div>

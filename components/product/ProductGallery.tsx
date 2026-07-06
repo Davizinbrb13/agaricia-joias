@@ -46,8 +46,8 @@ export default function ProductGallery({
           <Image
             src={mainImage}
             alt={`${productName} imagem ${selectedIndex + 1}`}
-            width={800}
-            height={800}
+            width={1000}
+            height={1000}
             sizes="(max-width: 768px) 100vw, 50vw"
             priority={selectedIndex === 0}
             style={{ objectFit: "contain" }}

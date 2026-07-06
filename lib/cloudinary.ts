@@ -56,11 +56,11 @@ export const productThumbnail = (id: string) =>
     quality: "auto",
   });
 
-/** Imagem grande 800x800 para página de produto */
+/** Imagem grande 1000x1000 para página de produto (usa a resolucao cheia das fotos 1K) */
 export const productHero = (id: string) =>
   cloudinaryUrl(id, {
-    width: 800,
-    height: 800,
+    width: 1000,
+    height: 1000,
     crop: "pad",
     background: "white",
     quality: "auto",

@@ -1146,45 +1146,54 @@
   transform: translateY(0) translateZ(50px);
 }
 
-/* Botão de adicionar à sacola no card — só aparece no PC, ao passar o mouse */
+/* Botão de adicionar à sacola no card — só aparece no PC, ao passar o mouse.
+   Fica FORA da cena 3D (filho direto do .cat-card) para o tilt não deslocar
+   a área clicável — assim o clique real acerta o botão, não o link atrás. */
 .cat-card-bag {
   display: none;
 }
 @media (hover: hover) and (pointer: fine) {
   .cat-card-bag {
-    pointer-events: auto;
-    flex-shrink: 0;
+    position: absolute;
+    bottom: 18px;
+    right: 22px;
+    z-index: 6;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     width: 44px;
     height: 44px;
     border-radius: 999px;
-    background: rgba(250, 250, 247, 0.9);
+    background: rgba(250, 250, 247, 0.92);
     backdrop-filter: blur(8px);
     color: var(--tide);
     border: 1px solid rgba(77, 190, 173, 0.35);
     cursor: pointer;
+    /* invisivel e sem capturar clique quando ocioso */
     opacity: 0;
+    pointer-events: none;
     transform: translateY(8px);
     transition: opacity 0.35s var(--ease-out), transform 0.35s var(--ease-out),
       background 0.25s, color 0.25s, box-shadow 0.25s;
     box-shadow: 0 8px 20px -10px rgba(15, 36, 68, 0.35);
   }
-  .cat-card.hover .cat-card-bag {
+  /* visivel + clicavel ao passar o mouse no card, ou quando ja esta na sacola */
+  .cat-card.hover .cat-card-bag,
+  .cat-card-bag.on {
     opacity: 1;
+    pointer-events: auto;
     transform: translateY(0);
-  }
-  .cat-card-bag:hover {
-    background: var(--tide);
-    color: #ffffff;
-    box-shadow: 0 12px 26px -10px rgba(77, 190, 173, 0.6);
   }
   .cat-card-bag.on {
     background: var(--tide);
     color: #ffffff;
     border-color: var(--tide);
-    opacity: 1;
+  }
+  .cat-card-bag:hover {
+    background: var(--tide);
+    color: #ffffff;
+    box-shadow: 0 12px 26px -10px rgba(77, 190, 173, 0.6);
+    transform: translateY(-2px);
   }
 }
 .cat-foot {

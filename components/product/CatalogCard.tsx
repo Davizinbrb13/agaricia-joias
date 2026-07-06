@@ -116,19 +116,20 @@ export default function CatalogCard({ product, index = 0 }: CatalogCardProps) {
             <div className="cat-card-name">{product.name}</div>
             {specs && <div className="cat-card-specs">{specs}</div>}
           </div>
-
-          <button
-            type="button"
-            className={`cat-card-bag ${inBag ? "on" : ""}`}
-            onClick={toggleBag}
-            aria-pressed={inBag}
-            aria-label={inBag ? `Remover ${product.name} da sacola` : `Adicionar ${product.name} à sacola`}
-            title={inBag ? "Na sacola — remover" : "Adicionar à sacola"}
-          >
-            <BagIcon size={20} strokeWidth={1.7} />
-          </button>
         </div>
       </div>
+
+      {/* Fora da cena 3D: fica estável e clicável de verdade (o tilt nao desloca o alvo) */}
+      <button
+        type="button"
+        className={`cat-card-bag ${inBag ? "on" : ""}`}
+        onClick={toggleBag}
+        aria-pressed={inBag}
+        aria-label={inBag ? `Remover ${product.name} da sacola` : `Adicionar ${product.name} à sacola`}
+        title={inBag ? "Na sacola — remover" : "Adicionar à sacola"}
+      >
+        <BagIcon size={20} strokeWidth={1.7} />
+      </button>
     </Link>
   );
 }

@@ -113,16 +113,16 @@ export default function Header() {
 
       {/* Mobile CTA — shown via CSS media query */}
       <div className="nav-mobile-cta">
-        <BagLink />
         <a
           href={`https://wa.me/${WA}`}
           target="_blank"
           rel="noopener noreferrer"
           className="nav-cta"
-          style={{ fontSize: 11, padding: "10px 16px" }}
+          style={{ fontSize: 11, padding: "9px 14px" }}
         >
           WhatsApp
         </a>
+        <BagLink />
         <button
           ref={menuButtonRef}
           onClick={() => setMobileOpen((v) => !v)}
@@ -130,8 +130,7 @@ export default function Header() {
           aria-expanded={mobileOpen}
           aria-controls="mobile-menu"
           style={{
-            marginLeft: 8,
-            padding: 8,
+            padding: 6,
             background: "none",
             border: "none",
             cursor: "pointer",

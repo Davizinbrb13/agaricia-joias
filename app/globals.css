@@ -1643,7 +1643,11 @@
   .nav-mobile-cta {
     display: flex !important;
     align-items: center;
+    gap: 8px;
   }
+  /* zera as margens ad-hoc: o espacamento fica so no gap, alinhado */
+  .nav-mobile-cta .nav-bag { margin-right: 0; padding: 6px; }
+  .nav-mobile-cta .nav-cta { margin-left: 0; }
   .hero { padding: 120px 0 40px; min-height: auto; }
   .hero-scroll {
     position: static;

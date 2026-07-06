@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useCart } from "@/components/cart/CartContext";
+import BagIcon from "@/components/ui/BagIcon";
 
 export default function CartBar() {
   const { count } = useCart();
@@ -10,7 +11,7 @@ export default function CartBar() {
   return (
     <Link
       href="/carrinho"
-      aria-label={`Ver carrinho com ${count} peças`}
+      aria-label={`Ver sacola com ${count} peças`}
       style={{
         position: "fixed",
         left: "50%",
@@ -29,7 +30,8 @@ export default function CartBar() {
         boxShadow: "0 10px 30px rgba(15,36,68,0.35)",
       }}
     >
-      <span>Ver carrinho</span>
+      <BagIcon size={18} strokeWidth={1.7} />
+      <span>Ver sacola</span>
       <span
         style={{
           minWidth: 24,

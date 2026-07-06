@@ -4,6 +4,8 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import AgariciaMark from "@/components/ui/AgariciaMark";
+import BagIcon from "@/components/ui/BagIcon";
+import { useCart } from "@/components/cart/CartContext";
 
 const NAV_LINKS = [
   { href: "/", label: "Início" },
@@ -85,6 +87,7 @@ export default function Header() {
 
       {/* Desktop nav */}
       <nav className="nav-links" aria-label="Menu principal">
+        <BagLink />
         {NAV_LINKS.map((link) => {
           const isActive =
             link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
@@ -110,6 +113,7 @@ export default function Header() {
 
       {/* Mobile CTA — shown via CSS media query */}
       <div className="nav-mobile-cta">
+        <BagLink />
         <a
           href={`https://wa.me/${WA}`}
           target="_blank"
@@ -206,5 +210,17 @@ export default function Header() {
         </nav>
       )}
     </header>
+  );
+}
+
+/** Ícone de sacola no header, com contador de peças. Leva para a página da sacola. */
+function BagLink() {
+  const { count } = useCart();
+
+  return (
+    <Link href="/carrinho" className="nav-bag" aria-label={`Ver sacola${count ? ` (${count})` : ""}`}>
+      <BagIcon size={22} />
+      {count > 0 && <span className="nav-bag-count">{count}</span>}
+    </Link>
   );
 }

@@ -13,7 +13,7 @@ export default function AddToCartButton({ productId }: { productId: string }) {
       onClick={() => (inCart ? remove(productId) : add(productId))}
       aria-pressed={inCart}
     >
-      {inCart ? "✓ No carrinho — remover" : "Adicionar ao carrinho"}
+      {inCart ? "✓ Na sacola — remover" : "Adicionar à sacola"}
     </button>
   );
 }

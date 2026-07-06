@@ -7,6 +7,7 @@ import { useCart } from "@/components/cart/CartContext";
 import { getProductsByIds, createCart } from "@/lib/queries";
 import { generateCartCode } from "@/lib/cart-code";
 import { productThumbnail } from "@/lib/cloudinary";
+import { getWhatsAppUrl } from "@/lib/whatsapp";
 import type { Product } from "@/types/product";
 
 export default function CarrinhoPage() {
@@ -162,9 +163,9 @@ export default function CarrinhoPage() {
                   </button>
                   <a
                     className="btn btn-primary btn-whatsapp-pulse"
-                    href={`https://wa.me/?text=${encodeURIComponent(
+                    href={getWhatsAppUrl(
                       `Oi! Separei minhas peças favoritas da Agaricia no site: ${link}`
-                    )}`}
+                    )}
                     target="_blank"
                     rel="noopener noreferrer"
                   >

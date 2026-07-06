@@ -209,6 +209,42 @@
   transform: translateY(-1px);
 }
 
+/* Ícone de sacola no header */
+.nav-bag {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  margin-right: 6px;
+  color: var(--ink);
+  opacity: 0.78;
+  transition: opacity 0.3s, color 0.3s, transform 0.3s var(--ease-out);
+}
+.nav-bag:hover {
+  opacity: 1;
+  color: var(--tide);
+  transform: translateY(-1px);
+}
+.nav-bag-count {
+  position: absolute;
+  top: 2px;
+  right: 0;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: var(--tide);
+  color: #fff;
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* ============ BUTTONS ============ */
 .btn {
   display: inline-flex;
@@ -1108,6 +1144,48 @@
 .cat-card.hover .cat-card-cta {
   opacity: 1;
   transform: translateY(0) translateZ(50px);
+}
+
+/* Botão de adicionar à sacola no card — só aparece no PC, ao passar o mouse */
+.cat-card-bag {
+  display: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  .cat-card-bag {
+    pointer-events: auto;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    background: rgba(250, 250, 247, 0.9);
+    backdrop-filter: blur(8px);
+    color: var(--tide);
+    border: 1px solid rgba(77, 190, 173, 0.35);
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.35s var(--ease-out), transform 0.35s var(--ease-out),
+      background 0.25s, color 0.25s, box-shadow 0.25s;
+    box-shadow: 0 8px 20px -10px rgba(15, 36, 68, 0.35);
+  }
+  .cat-card.hover .cat-card-bag {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .cat-card-bag:hover {
+    background: var(--tide);
+    color: #ffffff;
+    box-shadow: 0 12px 26px -10px rgba(77, 190, 173, 0.6);
+  }
+  .cat-card-bag.on {
+    background: var(--tide);
+    color: #ffffff;
+    border-color: var(--tide);
+    opacity: 1;
+  }
 }
 .cat-foot {
   text-align: center;

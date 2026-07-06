@@ -4,6 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRef, useState } from "react";
 import { productThumbnail } from "@/lib/cloudinary";
+import { useCart } from "@/components/cart/CartContext";
+import BagIcon from "@/components/ui/BagIcon";
 
 import type { Product } from "@/types/product";
 import { CATEGORIES } from "@/types/product";
@@ -17,6 +19,18 @@ export default function CatalogCard({ product, index = 0 }: CatalogCardProps) {
   const ref = useRef<HTMLAnchorElement>(null);
   const [tilt, setTilt] = useState({ rx: 0, ry: 0, px: 50, py: 50 });
   const [hover, setHover] = useState(false);
+  const { has, add, remove } = useCart();
+  const inBag = has(product.id);
+
+  function toggleBag(e: React.MouseEvent) {
+    e.preventDefault();
+    e.stopPropagation();
+    if (inBag) {
+      remove(product.id);
+    } else {
+      add(product.id);
+    }
+  }
 
   const imageSrc = product.thumbnail
     ? productThumbnail(product.thumbnail)
@@ -103,6 +117,16 @@ export default function CatalogCard({ product, index = 0 }: CatalogCardProps) {
             {specs && <div className="cat-card-specs">{specs}</div>}
           </div>
 
+          <button
+            type="button"
+            className={`cat-card-bag ${inBag ? "on" : ""}`}
+            onClick={toggleBag}
+            aria-pressed={inBag}
+            aria-label={inBag ? `Remover ${product.name} da sacola` : `Adicionar ${product.name} à sacola`}
+            title={inBag ? "Na sacola — remover" : "Adicionar à sacola"}
+          >
+            <BagIcon size={20} strokeWidth={1.7} />
+          </button>
         </div>
       </div>
     </Link>

@@ -993,7 +993,9 @@
   border-radius: var(--r-lg);
   cursor: pointer;
   animation: cardIn 0.9s var(--ease-out) backwards;
-  transform-style: preserve-3d;
+  /* Sem preserve-3d aqui de proposito: a cena (.cat-card-scene) mantem seu
+     proprio 3D e recebe a perspective do link, mas o link fica "plano" para
+     o botao de sacola respeitar o z-index e nunca ser coberto pelo tilt. */
   aspect-ratio: 1 / 1.15;
   display: block;
 }
@@ -1169,19 +1171,22 @@
     color: var(--tide);
     border: 1px solid rgba(77, 190, 173, 0.35);
     cursor: pointer;
-    /* invisivel e sem capturar clique quando ocioso */
+    /* Sempre clicavel (pointer-events auto): so aparece via :hover do CSS, mas
+       manter o alvo sempre ativo evita a corrida onde o clique real chega antes
+       do :hover aplicar e atravessa pro link. O botao e um cantinho de 44px, so
+       alcancavel quando o mouse ja esta sobre o card (logo, ja visivel). */
     opacity: 0;
-    pointer-events: none;
+    pointer-events: auto;
     transform: translateY(8px);
     transition: opacity 0.35s var(--ease-out), transform 0.35s var(--ease-out),
       background 0.25s, color 0.25s, box-shadow 0.25s;
     box-shadow: 0 8px 20px -10px rgba(15, 36, 68, 0.35);
   }
-  /* visivel + clicavel ao passar o mouse no card, ou quando ja esta na sacola */
-  .cat-card.hover .cat-card-bag,
+  /* Reveal visual via :hover do CSS (sincrono com o mouse). Tambem visivel
+     quando ja esta na sacola (.on). */
+  .cat-card:hover .cat-card-bag,
   .cat-card-bag.on {
     opacity: 1;
-    pointer-events: auto;
     transform: translateY(0);
   }
   .cat-card-bag.on {

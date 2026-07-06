@@ -9,9 +9,12 @@ interface CategoryFilterProps {
   products: Product[];
 }
 
+const PAGE_SIZE = 12;
+
 export default function CategoryFilter({ products }: CategoryFilterProps) {
   const [activeCategory, setActiveCategory] = useState<string>("all");
   const [activeRingSize, setActiveRingSize] = useState<string>("all");
+  const [visibleCount, setVisibleCount] = useState<number>(PAGE_SIZE);
 
   const ringSizes = useMemo(() => {
     return Array.from(
@@ -38,6 +41,11 @@ export default function CategoryFilter({ products }: CategoryFilterProps) {
     }
   }, [activeCategory]);
 
+  // Ao trocar de filtro, volta a mostrar o primeiro lote
+  useEffect(() => {
+    setVisibleCount(PAGE_SIZE);
+  }, [activeCategory, activeRingSize]);
+
   const filteredProducts = products.filter((product) => {
     const matchesCategory =
       activeCategory === "all" || categoryMatches(product, activeCategory);
@@ -47,6 +55,10 @@ export default function CategoryFilter({ products }: CategoryFilterProps) {
 
     return matchesCategory && matchesRingSize;
   });
+
+  const visibleProducts = filteredProducts.slice(0, visibleCount);
+  const hasMore = visibleCount < filteredProducts.length;
+  const remaining = filteredProducts.length - visibleCount;
 
   const showRingSizes = ringSizes.length > 0 && activeCategory === "anel";
 
@@ -121,11 +133,30 @@ export default function CategoryFilter({ products }: CategoryFilterProps) {
           <p>Nenhuma peça encontrada com esses filtros.</p>
         </div>
       ) : (
-        <div className="cat-grid">
-          {filteredProducts.map((product, i) => (
-            <CatalogCard key={product.id} product={product} index={i} />
-          ))}
-        </div>
+        <>
+          <div className="cat-grid">
+            {visibleProducts.map((product, i) => (
+              <CatalogCard key={product.id} product={product} index={i % PAGE_SIZE} />
+            ))}
+          </div>
+
+          {hasMore && (
+            <div className="cat-more">
+              <button
+                type="button"
+                className="btn btn-ghost cat-more-btn"
+                onClick={() =>
+                  setVisibleCount((count) => count + PAGE_SIZE)
+                }
+              >
+                Ver mais
+                <span className="cat-more-count">
+                  +{Math.min(PAGE_SIZE, remaining)}
+                </span>
+              </button>
+            </div>
+          )}
+        </>
       )}
     </>
   );

@@ -938,6 +938,20 @@
   grid-template-columns: repeat(3, 1fr);
 }
 
+.cat-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 44px;
+}
+.cat-more-btn {
+  gap: 10px;
+}
+.cat-more-count {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  opacity: 0.6;
+}
+
 .cat-card {
   position: relative;
   border-radius: var(--r-lg);

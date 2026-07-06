@@ -45,11 +45,11 @@ export function cloudinaryUrl(
   return `${BASE}/${transform}/${publicId}`;
 }
 
-/** Thumbnail 400x400 para cards do catálogo */
+/** Thumbnail 700x700 para cards do catálogo (nitido em telas retina/celular) */
 export const productThumbnail = (id: string) =>
   cloudinaryUrl(id, {
-    width: 400,
-    height: 400,
+    width: 700,
+    height: 700,
     crop: "fill",
     gravity: "auto",
     background: "white",

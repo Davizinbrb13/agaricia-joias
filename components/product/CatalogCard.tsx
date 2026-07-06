@@ -88,8 +88,8 @@ export default function CatalogCard({ product, index = 0 }: CatalogCardProps) {
           <Image
             src={imageSrc}
             alt={product.name}
-            width={400}
-            height={400}
+            width={700}
+            height={700}
             sizes="(max-width: 720px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
         </div>

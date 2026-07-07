@@ -152,7 +152,7 @@ export default function CategoryFilter({ products }: CategoryFilterProps) {
             <div className="cat-more">
               <button
                 type="button"
-                className="btn btn-ghost cat-more-btn"
+                className="btn cat-more-btn"
                 onClick={() =>
                   setVisibleCount((count) => count + PAGE_SIZE)
                 }

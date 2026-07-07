@@ -980,12 +980,22 @@
   margin-top: 44px;
 }
 .cat-more-btn {
+  background: var(--tide);
+  color: var(--ink);
+  border: 1px solid var(--tide);
   gap: 10px;
+}
+.cat-more-btn:hover {
+  background: #3fa697;
+  border-color: #3fa697;
+  color: var(--ink);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px -8px rgba(77, 190, 173, 0.45);
 }
 .cat-more-count {
   font-size: 12px;
   letter-spacing: 0.08em;
-  opacity: 0.6;
+  opacity: 0.8;
 }
 
 .cat-card {
@@ -1123,6 +1133,9 @@
   font-weight: 500;
   white-space: nowrap;
 }
+.cat-card-meta > div {
+  padding-right: 50px;
+}
 .cat-card-cta {
   position: absolute;
   top: 20px;
@@ -1138,49 +1151,55 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--ink);
-  opacity: 0;
-  transform: translateY(-8px) translateZ(50px);
+  opacity: 1;
+  transform: translateY(0) translateZ(50px);
   transition: all 0.4s var(--ease-out);
   z-index: 3;
 }
-.cat-card.hover .cat-card-cta {
-  opacity: 1;
-  transform: translateY(0) translateZ(50px);
+@media (hover: hover) and (pointer: fine) {
+  .cat-card-cta {
+    opacity: 0;
+    transform: translateY(-8px) translateZ(50px);
+  }
+  .cat-card.hover .cat-card-cta {
+    opacity: 1;
+    transform: translateY(0) translateZ(50px);
+  }
 }
 
-/* Botão de adicionar à sacola no card — só aparece no PC, ao passar o mouse.
-   Fica FORA da cena 3D (filho direto do .cat-card) para o tilt não deslocar
-   a área clicável — assim o clique real acerta o botão, não o link atrás. */
+/* Botão de adicionar à sacola no card — sempre visível no mobile */
 .cat-card-bag {
-  display: none;
+  position: absolute;
+  bottom: 18px;
+  right: 22px;
+  z-index: 6;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  background: rgba(250, 250, 247, 0.92);
+  backdrop-filter: blur(8px);
+  color: var(--tide);
+  border: 1px solid rgba(77, 190, 173, 0.35);
+  cursor: pointer;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.35s var(--ease-out), transform 0.35s var(--ease-out),
+    background 0.25s, color 0.25s, box-shadow 0.25s;
+  box-shadow: 0 8px 20px -10px rgba(15, 36, 68, 0.35);
 }
+.cat-card-bag.on {
+  background: var(--tide);
+  color: #ffffff;
+  border-color: var(--tide);
+}
+
 @media (hover: hover) and (pointer: fine) {
   .cat-card-bag {
-    position: absolute;
-    bottom: 18px;
-    right: 22px;
-    z-index: 6;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 44px;
-    height: 44px;
-    border-radius: 999px;
-    background: rgba(250, 250, 247, 0.92);
-    backdrop-filter: blur(8px);
-    color: var(--tide);
-    border: 1px solid rgba(77, 190, 173, 0.35);
-    cursor: pointer;
-    /* Sempre clicavel (pointer-events auto): so aparece via :hover do CSS, mas
-       manter o alvo sempre ativo evita a corrida onde o clique real chega antes
-       do :hover aplicar e atravessa pro link. O botao e um cantinho de 44px, so
-       alcancavel quando o mouse ja esta sobre o card (logo, ja visivel). */
     opacity: 0;
-    pointer-events: auto;
     transform: translateY(8px);
-    transition: opacity 0.35s var(--ease-out), transform 0.35s var(--ease-out),
-      background 0.25s, color 0.25s, box-shadow 0.25s;
-    box-shadow: 0 8px 20px -10px rgba(15, 36, 68, 0.35);
   }
   /* Reveal visual via :hover do CSS (sincrono com o mouse). Tambem visivel
      quando ja esta na sacola (.on). */
@@ -1705,6 +1724,21 @@
   .cat-ring-filter { grid-template-columns: 1fr; padding: 16px; }
   .cat-card-name { font-size: 18px; }
   .cat-card-price { font-size: 16px; }
+  .cat-card-cta {
+    top: 12px;
+    right: 12px;
+    padding: 6px 10px;
+    font-size: 10px;
+  }
+  .cat-card-bag {
+    bottom: 12px;
+    right: 12px;
+    width: 38px;
+    height: 38px;
+  }
+  .cat-card-meta > div {
+    padding-right: 44px;
+  }
   .cat-foot { padding: 80px 0 20px; }
 
   /* Produto */
